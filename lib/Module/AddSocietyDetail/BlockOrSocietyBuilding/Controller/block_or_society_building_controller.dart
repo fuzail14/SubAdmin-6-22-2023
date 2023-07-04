@@ -6,7 +6,6 @@ import 'package:societyadminapp/Routes/set_routes.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Model/User.dart';
 
-
 class BlockOrSocietyBuildingController extends GetxController {
   var data = Get.arguments;
 

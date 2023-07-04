@@ -86,7 +86,7 @@ class Login extends GetView {
                   ),
                   20.ph,
                   SvgPicture.asset('assets/line.svg'),
-                  104.6.ph,
+                  20.6.ph,
                   UpIcon(),
                 ]),
               ),

@@ -56,7 +56,7 @@ class MyTextFormField extends GetView {
       padding: EdgeInsets.fromLTRB(39.w, 16.h, 38.w, 0),
       child: SizedBox(
         width: width ?? 298.w,
-         height: height??43.h,
+        height: height ?? 43.h,
         child: TextFormField(
           style: GoogleFonts.ubuntu(
               fontWeight: FontWeight.w400, fontSize: 15, letterSpacing: 0.05),
@@ -101,7 +101,7 @@ class MyTextFormField extends GetView {
             fillColor: fillColor ?? HexColor('#FFFFFF'),
 
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0.r),
+              borderRadius: BorderRadius.circular(21.0.r),
               borderSide: BorderSide(color: primaryColor, width: 1.5),
             ),
             enabledBorder: OutlineInputBorder(

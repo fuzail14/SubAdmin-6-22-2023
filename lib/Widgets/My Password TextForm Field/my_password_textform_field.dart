@@ -108,9 +108,10 @@ class MyPasswordTextFormField extends GetView {
             hintText: hintText,
             // labelText: labelText,
             fillColor: fillcolor ?? HexColor('#FFFFFF'),
+            
 
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(21.0.r),
               borderSide: BorderSide(color: primaryColor, width: 1.5),
             ),
             enabledBorder: OutlineInputBorder(
