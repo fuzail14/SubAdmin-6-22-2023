@@ -102,20 +102,47 @@ class UnVerifiedResident extends GetView {
                                   arguments: controller.user);
                             },
                           ),
-                          TabBar(
-                            indicatorSize: TabBarIndicatorSize.tab,
-                            indicatorColor: primaryColor,
-                            tabs: [
-                              Tab(
-                                child: Text('House',
-                                    style: TextStyle(color: primaryColor)),
+                          32.ph,
+                          Container(
+                            margin: EdgeInsets.only(left: 23.w, right: 23.w),
+                            width: 329.w,
+                            height: 39.h,
+                            decoration: ShapeDecoration(
+                                color: Color(0x28FFA115),
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      width: 1.w, color: Color(0xFFFFA115)),
+                                  borderRadius: BorderRadius.circular(8.r),
+                                )),
+                            child: TabBar(
+                              unselectedLabelColor: Color(0xFF5A5A5A),
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              labelColor: Colors.white,
+                              indicator: ShapeDecoration(
+                                color: primaryColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.r)),
                               ),
-                              Tab(
-                                child: Text('Apartment',
-                                    style: TextStyle(color: primaryColor)),
-                              ),
-                            ],
-                            labelColor: Colors.white,
+                              indicatorColor: primaryColor,
+                              tabs: [
+                                Tab(
+                                  child: Text(
+                                    'House',
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12.sp),
+                                  ),
+                                ),
+                                Tab(
+                                  child: Text(
+                                    'Apartment',
+                                    style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 12.sp),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Expanded(
                             child: TabBarView(children: [

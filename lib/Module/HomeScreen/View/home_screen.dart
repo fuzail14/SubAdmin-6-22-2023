@@ -20,7 +20,6 @@ class HomeScreen extends GetView {
       init: HomeScreenController(),
       builder: (controller) => Scaffold(
         resizeToAvoidBottomInset: true,
-        
         key: controller.scaffoldKey,
         drawer: Drawer(
           child: ListView(
@@ -62,185 +61,188 @@ class HomeScreen extends GetView {
           ),
         ),
         backgroundColor: HexColor('#F5F5F5'),
-        body: Column(children: [
-          // drawer title n bell
-          Padding(
-            padding: EdgeInsets.only(
-              left: 38.w,
-              top: 72.h,
+        body: OrientationBuilder(builder: (context, orientation) {
+          return Column(children: [
+            // drawer title n bell
+            Padding(
+              padding: EdgeInsets.only(
+                left: 38.w,
+                top: 72.h,
+              ),
+              child: Row(
+                children: [
+                  IconButton(
+                      icon: SvgPicture.asset(
+                        'assets/drawer.svg',
+                      ),
+                      onPressed: () {
+                        controller.scaffoldKey.currentState!.openDrawer();
+                      }),
+                  22.pw,
+                  Text(
+                    'Society Admin',
+                    style: TextStyle(
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16.font,
+                        color: primaryColor),
+                  ),
+                  93.95.pw,
+                  IconButton(
+                      icon: SvgPicture.asset(
+                        'assets/bell.svg',
+                      ),
+                      onPressed: () {
+                        Get.offNamed(reportnotificationsscreen,
+                            arguments: controller.user);
+                      }),
+                ],
+              ),
             ),
-            child: Row(
-              children: [
-                IconButton(
-                    icon: SvgPicture.asset(
-                      'assets/drawer.svg',
-                    ),
-                    onPressed: () {
-                      controller.scaffoldKey.currentState!.openDrawer();
-                    }),
-                22.pw,
-                Text(
-                  'Society Admin',
-                  style: TextStyle(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16.font,
-                      color: primaryColor),
-                ),
-                93.95.pw,
-                IconButton(
-                    icon: SvgPicture.asset(
-                      'assets/bell.svg',
-                    ),
-                    onPressed: () {
-                      Get.offNamed(reportnotificationsscreen,
-                          arguments: controller.user);
-                    }),
-              ],
-            ),
-          ),
 
-          Padding(
-            padding: EdgeInsets.only(
-              left: 30.w,
-              top: 32.h,
+            Padding(
+              padding: EdgeInsets.only(
+                left: 30.w,
+                top: 32.h,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      AdminScreenContainer(
+                        onTap: () async {
+                          Get.offNamed(viewuser, arguments: controller.user);
+                        },
+                        icon: 'assets/residents.svg',
+                        text: 'Residents',
+                      ),
+                      11.pw,
+                      AdminScreenContainer(
+                        onTap: () async {
+                          Get.offNamed(gatekeeperscreen,
+                              arguments: controller.user);
+                        },
+                        icon: 'assets/gatekeepers.svg',
+                        text: 'Gatekeeper',
+                      ),
+                    ],
+                  ),
+                  16.ph,
+                  Row(
+                    children: [
+                      AdminScreenContainer(
+                        onTap: () async {
+                          Get.offNamed(eventsscreen,
+                              arguments: controller.user);
+                        },
+                        icon: 'assets/events.svg',
+                        text: 'Events',
+                      ),
+                      11.pw,
+                      AdminScreenContainer(
+                        onTap: () async {
+                          Get.offNamed(noticeboardscreen,
+                              arguments: controller.user);
+                        },
+                        icon: 'assets/noticeboard.svg',
+                        text: 'NoticeBoard',
+                      ),
+                    ],
+                  ),
+                  16.ph,
+                  Row(
+                    children: [
+                      AdminScreenContainer(
+                        onTap: () async {
+                          Get.offNamed(viewreportscreen,
+                              arguments: controller.user);
+                        },
+                        icon: 'assets/reports.svg',
+                        text: 'Reports',
+                      ),
+                      11.pw,
+                      (controller.user.structureType == 4)
+                          ? AdminScreenContainer(
+                              onTap: () async {
+                                Get.offNamed(localbuildingscreen,
+                                    arguments: controller.user);
+                              },
+                              icon: 'assets/reports.svg',
+                              text: 'Building\nDetail',
+                            )
+                          : AdminScreenContainer(
+                              onTap: () async {
+                                if (controller.user.structureType == 1) {
+                                  Get.offNamed(streetorbuildingscreen,
+                                      arguments: controller.user);
+                                } else if (controller.user.structureType == 2) {
+                                  Get.offNamed(blockorsocietybuilding,
+                                      arguments: controller.user);
+                                } else if (controller.user.structureType == 3) {
+                                  Get.offNamed(phaseorsocietybuilding,
+                                      arguments: controller.user);
+                                } else if (controller.user.structureType == 5) {
+                                  Get.offNamed(
+                                      structureType5HouseOrBuildingMiddlewareScreen,
+                                      arguments: controller.user);
+                                }
+                              },
+                              icon: 'assets/reports.svg',
+                              text: 'Society\nDetail',
+                            ),
+                    ],
+                  ),
+                  16.ph,
+                  Row(
+                    children: [
+                      AdminScreenContainer(
+                        onTap: () async {
+                          Get.offNamed(unverifiedresident,
+                              arguments: controller.user);
+                        },
+                        icon: 'assets/reports.svg',
+                        text: 'Resident\nVerification',
+                      ),
+                      11.pw,
+                      AdminScreenContainer(
+                        onTap: () async {
+                          Get.offNamed(measurementview,
+                              arguments: controller.user);
+                        },
+                        icon: 'assets/reports.svg',
+                        text: 'Measurement',
+                      ),
+                    ],
+                  ),
+                  16.ph,
+                  Row(
+                    children: [
+                      AdminScreenContainer(
+                        onTap: () async {
+                          Get.offNamed(bills, arguments: controller.user);
+                        },
+                        icon: 'assets/reports.svg',
+                        text: 'Bills',
+                      ),
+                      11.pw,
+                      AdminScreenContainer(
+                        onTap: () async {
+                          Get.offNamed(residentialEmergencyScreen,
+                              arguments: controller.user);
+                        },
+                        icon: 'assets/reports.svg',
+                        text: 'Residential\nEmergency',
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    AdminScreenContainer(
-                      onTap: () async {
-                        Get.offNamed(viewuser, arguments: controller.user);
-                      },
-                      icon: 'assets/residents.svg',
-                      text: 'Residents',
-                    ),
-                    11.pw,
-                    AdminScreenContainer(
-                      onTap: () async {
-                        Get.offNamed(gatekeeperscreen,
-                            arguments: controller.user);
-                      },
-                      icon: 'assets/gatekeepers.svg',
-                      text: 'Gatekeeper',
-                    ),
-                  ],
-                ),
-                16.ph,
-                Row(
-                  children: [
-                    AdminScreenContainer(
-                      onTap: () async {
-                        Get.offNamed(eventsscreen, arguments: controller.user);
-                      },
-                      icon: 'assets/events.svg',
-                      text: 'Events',
-                    ),
-                    11.pw,
-                    AdminScreenContainer(
-                      onTap: () async {
-                        Get.offNamed(noticeboardscreen,
-                            arguments: controller.user);
-                      },
-                      icon: 'assets/noticeboard.svg',
-                      text: 'NoticeBoard',
-                    ),
-                  ],
-                ),
-                16.ph,
-                Row(
-                  children: [
-                    AdminScreenContainer(
-                      onTap: () async {
-                        Get.offNamed(viewreportscreen,
-                            arguments: controller.user);
-                      },
-                      icon: 'assets/reports.svg',
-                      text: 'Reports',
-                    ),
-                    11.pw,
-                    (controller.user.structureType == 4)
-                        ? AdminScreenContainer(
-                            onTap: () async {
-                              Get.offNamed(localbuildingscreen,
-                                  arguments: controller.user);
-                            },
-                            icon: 'assets/reports.svg',
-                            text: 'Building\nDetail',
-                          )
-                        : AdminScreenContainer(
-                            onTap: () async {
-                              if (controller.user.structureType == 1) {
-                                Get.offNamed(streetorbuildingscreen,
-                                    arguments: controller.user);
-                              } else if (controller.user.structureType == 2) {
-                                Get.offNamed(blockorsocietybuilding,
-                                    arguments: controller.user);
-                              } else if (controller.user.structureType == 3) {
-                                Get.offNamed(phaseorsocietybuilding,
-                                    arguments: controller.user);
-                              } else if (controller.user.structureType == 5) {
-                                Get.offNamed(
-                                    structureType5HouseOrBuildingMiddlewareScreen,
-                                    arguments: controller.user);
-                              }
-                            },
-                            icon: 'assets/reports.svg',
-                            text: 'Society\nDetail',
-                          ),
-                  ],
-                ),
-                16.ph,
-                Row(
-                  children: [
-                    AdminScreenContainer(
-                      onTap: () async {
-                        Get.offNamed(unverifiedresident,
-                            arguments: controller.user);
-                      },
-                      icon: 'assets/reports.svg',
-                      text: 'Resident\nVerification',
-                    ),
-                    11.pw,
-                    AdminScreenContainer(
-                      onTap: () async {
-                        Get.offNamed(measurementview,
-                            arguments: controller.user);
-                      },
-                      icon: 'assets/reports.svg',
-                      text: 'Measurement',
-                    ),
-                  ],
-                ),
-                16.ph,
-                Row(
-                  children: [
-                    AdminScreenContainer(
-                      onTap: () async {
-                        Get.offNamed(bills, arguments: controller.user);
-                      },
-                      icon: 'assets/reports.svg',
-                      text: 'Bills',
-                    ),
-                    11.pw,
-                    AdminScreenContainer(
-                      onTap: () async {
-                        Get.offNamed(residentialEmergencyScreen,
-                            arguments: controller.user);
-                      },
-                      icon: 'assets/reports.svg',
-                      text: 'Residential\nEmergency',
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
 
-          50.ph,
-          UpIcon(),
-        ]),
+            50.ph,
+            UpIcon(),
+          ]);
+        }),
       ),
     );
   }

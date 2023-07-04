@@ -7,6 +7,7 @@ import 'package:http/http.dart' as Http;
 import '../../../Constants/api_routes.dart';
 import '../../../../Model/User.dart';
 
+import '../../../Routes/set_routes.dart';
 import '../Model/MeasurementModel.dart';
 
 class AddMeasurementController extends GetxController {
@@ -22,6 +23,7 @@ class AddMeasurementController extends GetxController {
   final TextEditingController areaController = TextEditingController();
   var userdata = Get.arguments;
   late final User user;
+  final formKey = new GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -93,11 +95,12 @@ class AddMeasurementController extends GetxController {
     if (response.statusCode == 200) {
       Get.snackbar("Successful", "Measurement Added !");
       isLoading = false;
+      update();
       propertyVal = null;
       unitVal = null;
       clearText();
 
-      update();
+      Get.offNamed(measurementview, arguments: user);
     } else if (response.statusCode == 403) {
       var data = jsonDecode(response.body.toString());
       (data['errors'] as List)
