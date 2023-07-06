@@ -106,6 +106,7 @@ class NotificationsController extends GetxController {
     var data = jsonDecode(response.body.toString());
 
     if (response.statusCode == 200) {
+      rejectcontroller.clear();
       Get.snackbar('Message:', 'Report Rejected',
           snackPosition: SnackPosition.BOTTOM,
           showProgressIndicator: true,

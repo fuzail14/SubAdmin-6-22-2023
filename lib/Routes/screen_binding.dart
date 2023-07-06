@@ -6,7 +6,7 @@ import 'package:societyadminapp/Module/AddLocalBuildingDetail/AddLocalBuildingFl
 import 'package:societyadminapp/Module/AddLocalBuildingDetail/LocalBuildingApartments/Controller/local_building_apartment_controller.dart';
 import 'package:societyadminapp/Module/AddLocalBuildingDetail/LocalBuildingFloors/Controller/local_building_floors_controller.dart';
 import 'package:societyadminapp/Module/AddNoticeBoard/Controller/add_notice_board_controller.dart';
-import 'package:societyadminapp/Module/AddResident/Controller/add_resident_controller.dart';
+
 import 'package:societyadminapp/Module/AddSocietyDetail/Add%20Houses/Controller/add_houses_controller.dart';
 import 'package:societyadminapp/Module/AddSocietyDetail/Add%20Phases/Controller/add_phases_controller.dart';
 import 'package:societyadminapp/Module/AddSocietyDetail/Add%20Streets/Controller/add_streets_controller.dart';
@@ -29,7 +29,7 @@ import 'package:societyadminapp/Module/AddSocietyDetail/SocietyBuildingFloor/Con
 import 'package:societyadminapp/Module/AddSocietyDetail/StreetOrBuilding/Controller/street_or_building_controller.dart';
 import 'package:societyadminapp/Module/AddSocietyDetail/Streets/Controller/street_controller.dart';
 import 'package:societyadminapp/Module/AddSocietyDetail/StructureType5HouseOrBuildingMiddleWare/Controller/structure_type5_house_or_building_controller.dart';
-import 'package:societyadminapp/Module/Bills/Controller/bills_controller.dart';
+
 import 'package:societyadminapp/Module/Events/Controller/event_screen_controller.dart';
 import 'package:societyadminapp/Module/GateKepeer/Controller/gate_keeper_controller.dart';
 import 'package:societyadminapp/Module/HomeScreen/Controller/home_screen_controller.dart';
@@ -75,7 +75,7 @@ class ScreenBindings extends Bindings {
     Get.lazyPut(() => LoginController());
     Get.lazyPut(() => HomeScreenController());
     Get.lazyPut(() => ViewResidentController());
-    Get.lazyPut(() => AddResidentController());
+    
     // Get.lazyPut(() => UpdateResidentDetails());
     // Get.lazyPut(() => ChatScreen());
     Get.lazyPut(() => GateKeeperController());
@@ -142,7 +142,7 @@ class ScreenBindings extends Bindings {
 
     Get.lazyPut(() => StructureType5HouseOrBuildingMiddlewareController());
     Get.lazyPut(() => LocalBuildingApartmentResidentVerificationController());
-    Get.lazyPut(() => BillsController());
+
     Get.lazyPut(() => GenerateSocietyApartmentBillsController());
     Get.lazyPut(() => GeneratedSocietyApartmentBillsController());
     Get.lazyPut(() => ResidentialEmergencyController());

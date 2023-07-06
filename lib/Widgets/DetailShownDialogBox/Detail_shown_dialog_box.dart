@@ -14,38 +14,39 @@ class DetailShownDialogBox extends StatelessWidget {
       {required this.heading, required this.text, required this.icon});
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      
       children: [
-        Row(
-          children: [
-            SvgPicture.asset(icon!),
-            10.pw,
-            Text(
-              heading!,
-              style: GoogleFonts.ubuntu(
-                color: HexColor('#4D4D4D'),
-                fontWeight: FontWeight.w400,
-                fontSize: ScreenUtil().setSp(12),
+        SvgPicture.asset(icon!),
+        10.pw,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                heading!,
+                style: GoogleFonts.ubuntu(
+                  color: HexColor('#4D4D4D'),
+                  fontWeight: FontWeight.w400,
+                  fontSize: ScreenUtil().setSp(12),
+                ),
               ),
-            ),
-          ],
+              10.ph,
+              Text(
+                text!,
+                style: GoogleFonts.ubuntu(
+                    color: HexColor('#1A1A1A'),
+                    fontWeight: FontWeight.w300,
+                    fontSize: ScreenUtil().setSp(16)),
+                
+              ),
+              10.ph
+            ],
+          ),
         ),
-        10.ph,
-        Wrap(
-          children: [
-            30.pw,
-            Text(
-              text!,
-              style: GoogleFonts.ubuntu(
-                  color: HexColor('#1A1A1A'),
-                  fontWeight: FontWeight.w300,
-                  fontSize: ScreenUtil().setSp(16)),
-            ),
-          ],
-        ),
-        10.ph
       ],
     );
+  
   }
 }

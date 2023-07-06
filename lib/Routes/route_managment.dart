@@ -6,7 +6,7 @@ import 'package:societyadminapp/Module/AddSocietyDetail/Add%20Streets/View/add_s
 import 'package:societyadminapp/Module/AddSocietyDetail/Blocks/View/blocks.dart';
 import 'package:societyadminapp/Module/AddSocietyDetail/Streets/View/streets.dart';
 import 'package:societyadminapp/Module/AdminProfile/View/admin_profile_screen.dart';
-import 'package:societyadminapp/Module/Bills/View/bills.dart';
+
 import 'package:societyadminapp/Module/Events/View/events_screen.dart';
 import 'package:societyadminapp/Module/Events/View/view_event_images_screen.dart';
 import 'package:societyadminapp/Module/GateKepeer/View/gate_keeper_screen.dart';
@@ -35,7 +35,7 @@ import '../Module/AddLocalBuildingDetail/AddLocalBuildingFloors/View/add_local_b
 import '../Module/AddLocalBuildingDetail/LocalBuilding/View/local_building_screen.dart';
 import '../Module/AddLocalBuildingDetail/LocalBuildingApartments/View/local_building_apartment_screen.dart';
 import '../Module/AddLocalBuildingDetail/LocalBuildingFloors/View/local_building_floors_screen.dart';
-import '../Module/AddResident/View/add_resident.dart';
+
 import '../Module/AddSocietyDetail/Add Phases/View/add_phases.dart';
 import '../Module/AddSocietyDetail/AddBlockOrPhaseBuilding/View/add_block_building_screen.dart';
 import '../Module/AddSocietyDetail/AddBlockOrPhaseBuildingApartment/View/add_block_or_phase_building_floors_screen.dart';
@@ -94,11 +94,7 @@ class RouteManagement {
           page: () => ViewResidents(),
           binding: ScreenBindings(),
           transition: Transition.leftToRight),
-      GetPage(
-          name: addresident,
-          page: () => AddResident(),
-          binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+
       // GetPage(
       //     name: updateresidentdetails,
       //     page: () => UpdateResidentDetails(),
@@ -402,11 +398,7 @@ class RouteManagement {
           page: () => LocalBuildingApartmentResidentVerification(),
           binding: ScreenBindings(),
           transition: Transition.leftToRight),
-      GetPage(
-          name: bills,
-          page: () => Bills(),
-          binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+
       GetPage(
           name: generatesocietyapartmentbills,
           page: () => GenerateSocietyApartmentBills(),
@@ -422,7 +414,7 @@ class RouteManagement {
           page: () => ResidentialEmergencyScreen(),
           binding: ScreenBindings(),
           transition: Transition.leftToRight),
-           GetPage(
+      GetPage(
           name: viewFinanceManager,
           page: () => ViewFinanceManager(),
           binding: ScreenBindings(),
@@ -437,7 +429,6 @@ class RouteManagement {
           page: () => UpdateFinanceManagerDetails(),
           binding: ScreenBindings(),
           transition: Transition.noTransition),
-          
     ];
   }
 }

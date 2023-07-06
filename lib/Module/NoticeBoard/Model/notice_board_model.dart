@@ -7,8 +7,9 @@ class NoticeBoardModel {
   final String? noticedetail;
   final String? startdate;
   final String? enddate;
-  final String? starttime;
-  final String? endtime;
+  // final String? starttime;
+  // final String? endtime;
+
   final int? status;
   final int? subadminid;
   NoticeBoardModel(
@@ -17,11 +18,9 @@ class NoticeBoardModel {
       this.noticedetail,
       this.startdate,
       this.enddate,
-      this.starttime,
-      this.endtime,
+      // this.starttime,
+      // this.endtime,
+
       this.status,
       this.subadminid});
-
-
-      
 }

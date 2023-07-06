@@ -26,142 +26,42 @@ class UnVerifiedResident extends GetView {
           },
           child: DefaultTabController(
             length: 2,
-            child: Scaffold(
-                backgroundColor: HexColor('#F5F5F5'),
-                body: (controller.userdata.structureType == 4)
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyBackButton(
-                            text: 'UnVerified Residents',
-                            onTap: () {
-                              Get.offNamed(homescreen,
-                                  arguments: controller.user);
-                            },
-                          ),
-                          Expanded(
-                            child: FutureBuilder(
-                                future: controller
-                                    .viewUnVerifiedLocalBuildingApartmentResidentApi(
-                                        subadminid: controller.userdata.userid!,
-                                        token: controller.userdata.bearerToken!,
-                                        status: 0),
-                                builder: (context, AsyncSnapshot snapshot) {
-                                  if (snapshot.hasData) {
-                                    if (snapshot.data.data != null &&
-                                        snapshot.data.data!.length != 0) {
-                                      return ListView.builder(
-                                        itemBuilder: (context, index) {
-                                          print(snapshot
-                                              .data.data[index].runtimeType);
-
-                                          return UnverifiedCard(
-                                            onTap: () {
-                                              Get.offNamed(
-                                                  localBuildingApartmentResidentVerification,
-                                                  arguments: [
-                                                    controller.userdata,
-                                                    snapshot.data.data[index]
-                                                  ]);
-                                            },
-                                            name: snapshot
-                                                    .data.data[index].firstname
-                                                    .toString() +
-                                                ' ' +
-                                                snapshot
-                                                    .data.data[index].lastname
-                                                    .toString(),
-                                            mobileno: snapshot
-                                                .data.data[index].mobileno
-                                                .toString(),
-                                          );
-                                        },
-                                        itemCount: snapshot.data.data.length,
-                                      );
-                                    } else {
-                                      return EmptyList(
-                                        name: 'No Resident for Verification',
-                                      );
-                                    }
-                                  } else if (snapshot.hasError) {
-                                    return Icon(Icons.error_outline);
-                                  } else {
-                                    return Loader();
-                                  }
-                                }),
-                          )
-                        ],
-                      )
-                    : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MyBackButton(
-                            text: 'UnVerified Residents',
-                            onTap: () {
-                              Get.offNamed(homescreen,
-                                  arguments: controller.user);
-                            },
-                          ),
-                          32.ph,
-                          Container(
-                            margin: EdgeInsets.only(left: 23.w, right: 23.w),
-                            width: 329.w,
-                            height: 39.h,
-                            decoration: ShapeDecoration(
-                                color: Color(0x28FFA115),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                      width: 1.w, color: Color(0xFFFFA115)),
-                                  borderRadius: BorderRadius.circular(8.r),
-                                )),
-                            child: TabBar(
-                              unselectedLabelColor: Color(0xFF5A5A5A),
-                              indicatorSize: TabBarIndicatorSize.tab,
-                              labelColor: Colors.white,
-                              indicator: ShapeDecoration(
-                                color: primaryColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8.r)),
-                              ),
-                              indicatorColor: primaryColor,
-                              tabs: [
-                                Tab(
-                                  child: Text(
-                                    'House',
-                                    style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12.sp),
-                                  ),
-                                ),
-                                Tab(
-                                  child: Text(
-                                    'Apartment',
-                                    style: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12.sp),
-                                  ),
-                                ),
-                              ],
+            child: SafeArea(
+              child: Scaffold(
+                  backgroundColor: HexColor('#F5F5F5'),
+                  body: (controller.userdata.structureType == 4)
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MyBackButton(
+                              text: 'UnVerified Residents',
+                              onTap: () {
+                                Get.offNamed(homescreen,
+                                    arguments: controller.user);
+                              },
                             ),
-                          ),
-                          Expanded(
-                            child: TabBarView(children: [
-                              //HOUSE VERIFICATION
-                              FutureBuilder(
-                                  future: controller.viewUnVerifiedResidentApi(
-                                      subadminid: controller.userdata.userid!,
-                                      token: controller.userdata.bearerToken!,
-                                      status: 0),
+                            Expanded(
+                              child: FutureBuilder(
+                                  future: controller
+                                      .viewUnVerifiedLocalBuildingApartmentResidentApi(
+                                          subadminid:
+                                              controller.userdata.userid!,
+                                          token:
+                                              controller.userdata.bearerToken!,
+                                          status: 0),
                                   builder: (context, AsyncSnapshot snapshot) {
                                     if (snapshot.hasData) {
                                       if (snapshot.data.data != null &&
                                           snapshot.data.data!.length != 0) {
                                         return ListView.builder(
                                           itemBuilder: (context, index) {
+                                            print(snapshot
+                                                .data.data[index].runtimeType);
+
                                             return UnverifiedCard(
                                               onTap: () {
                                                 Get.offNamed(
-                                                    houseresidentverification,
+                                                    localBuildingApartmentResidentVerification,
                                                     arguments: [
                                                       controller.userdata,
                                                       snapshot.data.data[index]
@@ -182,7 +82,9 @@ class UnVerifiedResident extends GetView {
                                           itemCount: snapshot.data.data.length,
                                         );
                                       } else {
-                                        return Container();
+                                        return EmptyList(
+                                          name: 'No Resident for Verification',
+                                        );
                                       }
                                     } else if (snapshot.hasError) {
                                       return Icon(Icons.error_outline);
@@ -190,24 +92,128 @@ class UnVerifiedResident extends GetView {
                                       return Loader();
                                     }
                                   }),
-                              FutureBuilder(
-                                  future: controller
-                                      .viewUnVerifiedApartmentResidentApi(
-                                          subadminid:
-                                              controller.userdata.userid!,
-                                          token:
-                                              controller.userdata.bearerToken!,
-                                          status: 0),
-                                  builder: (context, AsyncSnapshot snapshot) {
-                                    if (snapshot.hasData) {
-                                      if (snapshot.data.data != null &&
-                                          snapshot.data.data!.length != 0) {
-                                        return SizedBox(
-                                          height: 630,
-                                          child: ListView.builder(
+                            )
+                          ],
+                        )
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MyBackButton(
+                              text: 'UnVerified Residents',
+                              onTap: () {
+                                Get.offNamed(homescreen,
+                                    arguments: controller.user);
+                              },
+                            ),
+                            32.ph,
+                            Container(
+                              margin: EdgeInsets.only(left: 23.w, right: 23.w),
+                              width: 329.w,
+                              height: 39.h,
+                              decoration: ShapeDecoration(
+                                  color: Color(0x28FFA115),
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(
+                                        width: 1.w, color: Color(0xFFFFA115)),
+                                    borderRadius: BorderRadius.circular(8.r),
+                                  )),
+                              child: TabBar(
+                                unselectedLabelColor: Color(0xFF5A5A5A),
+                                indicatorSize: TabBarIndicatorSize.tab,
+                                labelColor: Colors.white,
+                                indicator: ShapeDecoration(
+                                  color: primaryColor,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8.r)),
+                                ),
+                                indicatorColor: primaryColor,
+                                tabs: [
+                                  Tab(
+                                    child: Text(
+                                      'House',
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 12.sp),
+                                    ),
+                                  ),
+                                  Tab(
+                                    child: Text(
+                                      'Apartment',
+                                      style: GoogleFonts.poppins(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 12.sp),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            30.ph,
+
+                            Expanded(
+                              child: TabBarView(children: [
+                                //HOUSE VERIFICATION
+                                FutureBuilder(
+                                    future:
+                                        controller.viewUnVerifiedResidentApi(
+                                            subadminid:
+                                                controller.userdata.userid!,
+                                            token: controller
+                                                .userdata.bearerToken!,
+                                            status: 0),
+                                    builder: (context, AsyncSnapshot snapshot) {
+                                      if (snapshot.hasData) {
+                                        if (snapshot.data.data != null &&
+                                            snapshot.data.data!.length != 0) {
+                                          return ListView.builder(
                                             itemBuilder: (context, index) {
-                                              print(snapshot.data.data[index]
-                                                  .runtimeType);
+                                              return UnverifiedCard(
+                                                onTap: () {
+                                                  Get.offNamed(
+                                                      houseresidentverification,
+                                                      arguments: [
+                                                        controller.userdata,
+                                                        snapshot
+                                                            .data.data[index]
+                                                      ]);
+                                                },
+                                                name: snapshot.data.data[index]
+                                                        .firstname
+                                                        .toString() +
+                                                    ' ' +
+                                                    snapshot.data.data[index]
+                                                        .lastname
+                                                        .toString(),
+                                                mobileno: snapshot
+                                                    .data.data[index].mobileno
+                                                    .toString(),
+                                              );
+                                            },
+                                            itemCount:
+                                                snapshot.data.data.length,
+                                          );
+                                        } else {
+                                          return Container();
+                                        }
+                                      } else if (snapshot.hasError) {
+                                        return Icon(Icons.error_outline);
+                                      } else {
+                                        return Loader();
+                                      }
+                                    }),
+                                FutureBuilder(
+                                    future: controller
+                                        .viewUnVerifiedApartmentResidentApi(
+                                            subadminid:
+                                                controller.userdata.userid!,
+                                            token: controller
+                                                .userdata.bearerToken!,
+                                            status: 0),
+                                    builder: (context, AsyncSnapshot snapshot) {
+                                      if (snapshot.hasData) {
+                                        if (snapshot.data.data != null &&
+                                            snapshot.data.data!.length != 0) {
+                                          return ListView.builder(
+                                            itemBuilder: (context, index) {
 
                                               return UnverifiedCard(
                                                   onTap: () {
@@ -215,38 +221,42 @@ class UnVerifiedResident extends GetView {
                                                         apartmentresidentverification,
                                                         arguments: [
                                                           controller.userdata,
-                                                          snapshot
-                                                              .data.data[index]
+                                                          snapshot.data
+                                                              .data[index]
                                                         ]);
                                                   },
-                                                  name: snapshot.data
-                                                          .data[index].firstname
+                                                  name: snapshot
+                                                          .data
+                                                          .data[index]
+                                                          .firstname
                                                           .toString() +
                                                       ' ' +
-                                                      snapshot.data.data[index]
+                                                      snapshot
+                                                          .data
+                                                          .data[index]
                                                           .lastname
                                                           .toString(),
-                                                  mobileno: snapshot
-                                                      .data.data[index].mobileno
+                                                  mobileno: snapshot.data
+                                                      .data[index].mobileno
                                                       .toString());
                                             },
                                             itemCount:
                                                 snapshot.data.data.length,
-                                          ),
-                                        );
+                                          );
+                                        } else {
+                                          return Container();
+                                        }
+                                      } else if (snapshot.hasError) {
+                                        return Icon(Icons.error_outline);
                                       } else {
-                                        return Container();
+                                        return Loader();
                                       }
-                                    } else if (snapshot.hasError) {
-                                      return Icon(Icons.error_outline);
-                                    } else {
-                                      return Loader();
-                                    }
-                                  }),
-                            ]),
-                          ),
-                        ],
-                      )),
+                                    }),
+                              ]),
+                            ),
+                          ],
+                        )),
+            ),
           )),
     );
   }

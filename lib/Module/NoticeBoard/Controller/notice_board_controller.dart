@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../Constants/api_routes.dart';
 import '../../../../Model/User.dart';
 
-
 import 'package:http/http.dart' as Http;
 
 import '../Model/notice_board_model.dart';
@@ -25,14 +24,12 @@ class NoticeBoardController extends GetxController {
     super.onInit();
     print("init");
     userdata = this.user;
-    data= viewNoticeBoardApi(userdata.userid!, userdata.bearerToken!);
+    data = viewNoticeBoardApi(userdata.userid!, userdata.bearerToken!);
     update();
   }
 
   Future<List<NoticeBoardModel>> viewNoticeBoardApi(
       int subadminid, String token) async {
-    
-
     final response = await Http.get(
       Uri.parse(Api.viewAllNotices + "/" + subadminid.toString()),
       headers: <String, String>{
@@ -43,7 +40,6 @@ class NoticeBoardController extends GetxController {
     var data = jsonDecode(response.body.toString());
 
     if (response.statusCode == 200) {
-      
       // for (var e in data["NoticeList"]) {
       //   print('here');
 
@@ -70,15 +66,15 @@ class NoticeBoardController extends GetxController {
                 noticedetail: e['noticedetail'],
                 startdate: e['startdate'],
                 enddate: e['enddate'],
-                starttime: e['starttime'],
-                endtime: e['endtime'],
+                // starttime: e['starttime'],
+                // endtime: e['endtime'],
+
                 status: e['status'],
                 subadminid: e['subadminid'],
               ))
           .toList();
-update();
+      update();
       return li;
-      
     }
     return li;
   }
@@ -102,10 +98,9 @@ update();
     if (response.statusCode == 200) {
       //listOfSubAdmi.clear();
 
-   this. data= viewNoticeBoardApi(userdata.userid!, userdata.bearerToken!);
+      this.data = viewNoticeBoardApi(userdata.userid!, userdata.bearerToken!);
       Get.back();
       update();
     }
-
   }
 }

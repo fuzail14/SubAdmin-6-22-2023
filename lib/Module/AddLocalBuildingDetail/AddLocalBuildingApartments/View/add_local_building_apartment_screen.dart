@@ -8,8 +8,6 @@ import '../../../../Widgets/My Button/my_button.dart';
 import '../Controller/add_local_building_apartment_controller.dart';
 
 class AddLocalBuildingApartmentsScreen extends GetView {
-  
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddLocalBuildingApartmentsController>(
@@ -17,7 +15,8 @@ class AddLocalBuildingApartmentsScreen extends GetView {
         builder: (controller) {
           return WillPopScope(
             onWillPop: () async {
-              Get.offAndToNamed(localbuildingapartmentscreen, arguments: [controller.user,controller. fid]);
+              Get.offAndToNamed(localbuildingapartmentscreen,
+                  arguments: [controller.user, controller.fid]);
 
               return true;
             },
@@ -31,9 +30,9 @@ class AddLocalBuildingApartmentsScreen extends GetView {
                       children: <Widget>[
                         MyBackButton(
                           text: 'Add Apartments',
-                          onTap: (){
-                            Get.offAndToNamed(localbuildingapartmentscreen, arguments: [controller.user,controller. fid]);
-
+                          onTap: () {
+                            Get.offAndToNamed(localbuildingapartmentscreen,
+                                arguments: [controller.user, controller.fid]);
                           },
                         ),
                         SizedBox(height: 20),
@@ -107,8 +106,6 @@ class AddLocalBuildingApartmentsScreen extends GetView {
                         ),
                         MyButton(
                           onPressed: () {
-                            
-
                             controller.addApartmentsApi(
                               bearerToken: controller.user.bearerToken!,
                               from: controller.fromController.text.toString(),

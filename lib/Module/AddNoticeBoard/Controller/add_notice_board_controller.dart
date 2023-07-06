@@ -6,7 +6,6 @@ import 'package:societyadminapp/Routes/set_routes.dart';
 import '../../../Constants/api_routes.dart';
 import '../../../Model/User.dart';
 
-
 class AddNoticeBoardScreenController extends GetxController {
   final formKey = new GlobalKey<FormState>();
 
@@ -24,8 +23,9 @@ class AddNoticeBoardScreenController extends GetxController {
   TextEditingController noticedescriptionController = TextEditingController();
   TextEditingController startnoticedateController = TextEditingController();
   TextEditingController endnoticedateController = TextEditingController();
-  TextEditingController startnoticetimeController = TextEditingController();
-  TextEditingController endnoticetimeController = TextEditingController();
+  // TextEditingController startnoticetimeController = TextEditingController();
+  // TextEditingController endnoticetimeController = TextEditingController();
+
   Future NoticeStartDate(context) async {
     DateTime? picked = await showDatePicker(
         initialDate: new DateTime.now(),
@@ -50,45 +50,46 @@ class AddNoticeBoardScreenController extends GetxController {
     update();
   }
 
-  Future NoticeStartTime(context) async {
-    TimeOfDay? picked = await showTimePicker(
-      context: context,
-      initialTime: new TimeOfDay.now(),
-    );
-    print('timeee.$picked');
-    var currentTime =
-        '${picked!.hour.toString().padLeft(2, '0')}:${picked.minute.toString().padLeft(2, '0')}';
+  // Future NoticeStartTime(context) async {
+  //   TimeOfDay? picked = await showTimePicker(
+  //     context: context,
+  //     initialTime: new TimeOfDay.now(),
+  //   );
+  //   print('timeee.$picked');
+  //   var currentTime =
+  //       '${picked!.hour.toString().padLeft(2, '0')}:${picked.minute.toString().padLeft(2, '0')}';
 
-    currentTime.toString();
-    startnoticetimeController.text =
-        currentTime.toString().split(' ')[0].trim();
+  //   currentTime.toString();
+  //   startnoticetimeController.text =
+  //       currentTime.toString().split(' ')[0].trim();
 
-    update();
-  }
+  //   update();
+  // }
 
-  Future NoticeEndTime(context) async {
-    TimeOfDay? picked = await showTimePicker(
-      context: context,
-      initialTime: new TimeOfDay.now(),
-    );
-    print('timeee.$picked');
-    var currentTime =
-        '${picked!.hour.toString().padLeft(2, '0')}:${picked.minute.toString().padLeft(2, '0')}';
+  // Future NoticeEndTime(context) async {
+  //   TimeOfDay? picked = await showTimePicker(
+  //     context: context,
+  //     initialTime: new TimeOfDay.now(),
+  //   );
+  //   print('timeee.$picked');
+  //   var currentTime =
+  //       '${picked!.hour.toString().padLeft(2, '0')}:${picked.minute.toString().padLeft(2, '0')}';
 
-    currentTime.toString();
+  //   currentTime.toString();
 
-    endnoticetimeController.text = currentTime.toString().split(' ')[0].trim();
+  //   endnoticetimeController.text = currentTime.toString().split(' ')[0].trim();
 
-    update();
-  }
+  //   update();
+  // }
 
   addNoticeBoardApi({
     required String noticetitle,
     required String noticedes,
     required String startdate,
     required String enddate,
-    required String starttime,
-    required String endtime,
+    // required String starttime,
+    // required String endtime,
+
     required String bearerToken,
     required int subadminid,
   }) async {
@@ -105,19 +106,21 @@ class AddNoticeBoardScreenController extends GetxController {
         "noticedetail": noticedes,
         "startdate": startdate,
         "enddate": enddate,
-        "starttime": starttime,
-        "endtime": endtime,
+        // "starttime": starttime,
+        // "endtime": endtime,
+
         "status": 0,
         "subadminid": subadminid
       }),
     );
 
     if (response.statusCode == 200) {
+      isLoading = false;
+      update();
       Get.offNamed(noticeboardscreen, arguments: user);
 
       Get.snackbar("notice Add Successfully", "");
-    }
-    else if (response.statusCode == 403) {
+    } else if (response.statusCode == 403) {
       isLoading = false;
       update();
       var data = jsonDecode(response.body.toString());
@@ -127,8 +130,7 @@ class AddNoticeBoardScreenController extends GetxController {
                 e.toString(),
               ))
           .toList();
-    }
-    else {
+    } else {
       isLoading = false;
       update();
       Get.snackbar("Failed to Add Notice", "");

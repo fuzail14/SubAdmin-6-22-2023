@@ -49,48 +49,46 @@ class ResidentsNGateKeeperViewCard extends StatelessWidget {
       ),
       height: 88.h,
       child: Stack(children: [
-        Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: 12.h, left: 12.w),
-              child: Container(
-                width: 90.4.w,
-                height: 61.6.h,
+        Padding(
+            padding: EdgeInsets.only(top: 12.h, left: 12.w, bottom: 12.w),
+            child: Container(
+                width: 70.4000015258789.w,
+                height: 64.h,
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.400000095367432.r),
+                  color: Color(0xff9acb34),
                   image: DecorationImage(
                       image: NetworkImage(image!), fit: BoxFit.cover),
+                ))),
+        10.pw,
+        Padding(
+          padding: EdgeInsets.only(top: 12.h, left: 97.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.w500,
+                    fontSize: ScreenUtil().setSp(16),
+                    color: HexColor('#404345')),
+              ),
+              10.ph,
+              Text(
+                mobileno!,
+                style: TextStyle(
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.w200,
+                  fontSize: ScreenUtil().setSp(16),
                 ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
-            ),
-            10.pw,
-            Padding(
-              padding: EdgeInsets.only(top: 12.h, left: 14.6.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    name!,
-                    style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.w500,
-                        fontSize: ScreenUtil().setSp(16),
-                        color: HexColor('#404345')),
-                  ),
-                  10.ph,
-                  Text(
-                    mobileno!,
-                    style: TextStyle(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w200,
-                      fontSize: ScreenUtil().setSp(16),
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
         if (showButton)
           Padding(

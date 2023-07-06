@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as Http;
 
 import '../../../Constants/api_routes.dart';
-import '../../../Repo/Login Repository/login_repository.dart';
+
 import '../../../Routes/set_routes.dart';
 import '../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../Model/SocietyModel.dart';
@@ -18,7 +18,7 @@ class LoginController extends GetxController {
   var isHidden = false;
   TextEditingController userCnicController = TextEditingController();
   TextEditingController userPasswordController = TextEditingController();
-  final _repository = LoginRepository();
+
   bool loading = false;
 
   Future loginApi(String cnic, String password) async {

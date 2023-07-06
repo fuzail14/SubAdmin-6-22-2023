@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:societyadminapp/Widgets/Extensions/extensions.dart';
 
 
 class MyText extends GetView {
@@ -19,7 +20,7 @@ class MyText extends GetView {
               fontStyle: FontStyle.normal,
               // color: secondaryColor,
               fontWeight: FontWeight.w400,
-              fontSize: 14,
+              fontSize: 14.font,
               color: color ?? Colors.black)),
     );
   }

@@ -24,77 +24,79 @@ class ReportedResidentListScreen extends StatelessWidget {
 
           return true;
         },
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          body: Column(
-            children: [
-              MyBackButton(
-                text: 'Reported Residents',
-                onTap: () {
-                  Get.offNamed(homescreen, arguments: controller.user);
-                },
-              ),
-              Expanded(
-                child: FutureBuilder<List<ReportedResident>>(
-                    future: controller.viewResidentsApi(
-                        controller.userdata.userid!,
-                        controller.userdata.bearerToken!),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        if (snapshot.data != null &&
-                            snapshot.data!.length != 0) {
-                          return ListView.builder(
-                            itemBuilder: (context, index) {
-                              return ReportsScreenCard(
-                                img: Api.imageBaseUrl +
-                                    snapshot.data![index].image.toString(),
-                                heading: snapshot.data![index].firstname
-                                        .toString() +
-                                    ' ' +
-                                    snapshot.data![index].lastname.toString(),
-                                heading1:
-                                    snapshot.data![index].title.toString(),
-                                heading2: snapshot.data![index].mobileno,
-                                showIcon: false,
-                                buttonName: 'Reports',
-                                color: primaryColor,
-                                onPressed: () {
-                                  Get.offNamed(userreportslistscreen,
-                                      arguments: [
-                                        controller.user,
-                                        snapshot.data![index].userid,
-                                        snapshot.data![index].firstname,
-                                        snapshot.data![index].lastname,
-                                        snapshot.data![index].address,
-                                        snapshot.data![index].mobileno,
-                                      ]);
-                                },
-                              );
-                            },
-                            itemCount: snapshot.data!.length,
-                          );
+        child: SafeArea(
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: Column(
+              children: [
+                MyBackButton(
+                  text: 'Reported Residents',
+                  onTap: () {
+                    Get.offNamed(homescreen, arguments: controller.user);
+                  },
+                ),
+                Expanded(
+                  child: FutureBuilder<List<ReportedResident>>(
+                      future: controller.viewResidentsApi(
+                          controller.userdata.userid!,
+                          controller.userdata.bearerToken!),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          if (snapshot.data != null &&
+                              snapshot.data!.length != 0) {
+                            return ListView.builder(
+                              itemBuilder: (context, index) {
+                                return ReportsScreenCard(
+                                  img: Api.imageBaseUrl +
+                                      snapshot.data![index].image.toString(),
+                                  heading: snapshot.data![index].firstname
+                                          .toString() +
+                                      ' ' +
+                                      snapshot.data![index].lastname.toString(),
+                                  heading1:
+                                      snapshot.data![index].title.toString(),
+                                  heading2: snapshot.data![index].mobileno,
+                                  showIcon: false,
+                                  buttonName: 'Reports',
+                                  color: primaryColor,
+                                  onPressed: () {
+                                    Get.offNamed(userreportslistscreen,
+                                        arguments: [
+                                          controller.user,
+                                          snapshot.data![index].userid,
+                                          snapshot.data![index].firstname,
+                                          snapshot.data![index].lastname,
+                                          snapshot.data![index].address,
+                                          snapshot.data![index].mobileno,
+                                        ]);
+                                  },
+                                );
+                              },
+                              itemCount: snapshot.data!.length,
+                            );
+                          } else {
+                            return Center(
+                                child: Text('No Reports',
+                                    style: GoogleFonts.ubuntu(
+                                        color: HexColor('#404345'),
+                                        fontStyle: FontStyle.normal,
+                                        letterSpacing: 0.0015,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500)));
+                            ;
+                          }
+                        } else if (snapshot.hasError) {
+                          return Icon(Icons.error_outline);
                         } else {
                           return Center(
-                              child: Text('No Reports',
-                                  style: GoogleFonts.ubuntu(
-                                      color: HexColor('#404345'),
-                                      fontStyle: FontStyle.normal,
-                                      letterSpacing: 0.0015,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500)));
-                          ;
+                              child: CircularProgressIndicator(
+                            color: primaryColor,
+                          ));
                         }
-                      } else if (snapshot.hasError) {
-                        return Icon(Icons.error_outline);
-                      } else {
-                        return Center(
-                            child: CircularProgressIndicator(
-                          color: primaryColor,
-                        ));
-                      }
-                    }),
-              ),
-            ],
+                      }),
+                ),
+              ],
+            ),
           ),
         ),
       ),

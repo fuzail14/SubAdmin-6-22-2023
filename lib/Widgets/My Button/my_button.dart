@@ -17,7 +17,7 @@ class MyButton extends StatelessWidget {
   final Color? color;
   final Color? textColor;
   final int? maxLines;
-  final bool? loading;
+  final bool loading;
   final void Function()? onPressed;
   const MyButton(
       {super.key,
@@ -48,7 +48,13 @@ class MyButton extends StatelessWidget {
           color: color ?? primaryColor,
         ),
         child: Center(
-          child: Text(
+          child: 
+          loading
+            ? CircularProgressIndicator(
+                color: Colors.white,
+              )
+            :
+          Text(
             name,
             maxLines: maxLines ?? 1,
             style: GoogleFonts.ubuntu(

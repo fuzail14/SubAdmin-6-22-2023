@@ -10,7 +10,6 @@ import '../../../Constants/api_routes.dart';
 import '../../GateKepeer/Model/gate_keeper_model.dart';
 import '../../../../Model/User.dart';
 
-
 class UpdateGateKeeperController extends GetxController {
   var argument = Get.arguments;
   late final Gatekeeper gatekeeper;
@@ -86,12 +85,6 @@ class UpdateGateKeeperController extends GetxController {
     required File? image,
     required String bearerToken,
   }) async {
-    print("update api");
-    print(gatekeeperid.toString());
-    print(gatekeeperfirstname);
-    print(gatekeeperaddress);
-    print(bearerToken.toString());
-    print(image);
     isLoading = true;
     update();
 
@@ -116,9 +109,11 @@ class UpdateGateKeeperController extends GetxController {
     var response = await Http.Response.fromStream(responsed);
     print(response.body);
     if (response.statusCode == 200) {
-      print(response.body.toString());
+      isLoading = false;
+      update();
 
       Get.offAndToNamed(gatekeeperscreen, arguments: user);
+      
     } else {}
   }
 }

@@ -137,8 +137,7 @@ class EventnNoticeBoardViewCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     width: 85.w,
                     height: 22.h,
-                    borderRadius:  BorderRadius.circular(8.r),
-                      
+                    borderRadius: BorderRadius.circular(8.r),
                     fontSize: ScreenUtil().setSp(10),
                     name: 'View Image',
                     color: primaryColor,
