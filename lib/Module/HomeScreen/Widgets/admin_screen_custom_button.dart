@@ -29,23 +29,20 @@ class AdminScreenContainer extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                left: ScreenUtil().setWidth(4),
+                left: ScreenUtil().setWidth(16),
                 top: ScreenUtil().setHeight(16),
               ),
               child: Container(
-                margin: EdgeInsets.only(
-                  left: ScreenUtil().setWidth(11),
-                  bottom: ScreenUtil().setHeight(10),
-                ),
                 child: SvgPicture.asset(
                   icon!,
                   fit: BoxFit.scaleDown,
                 ),
+                
                 width: ScreenUtil().setWidth(40),
                 height: ScreenUtil().setHeight(40),
                 decoration: BoxDecoration(
                   color: HexColor('#FFDDA9'),
-                  borderRadius: BorderRadius.circular(16).w,
+                  borderRadius: BorderRadius.circular(16).r,
                 ),
               ),
             ),

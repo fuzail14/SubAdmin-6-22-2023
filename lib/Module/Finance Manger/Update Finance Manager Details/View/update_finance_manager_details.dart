@@ -12,11 +12,13 @@ import 'package:societyadminapp/Widgets/Extensions/extensions.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Routes/set_routes.dart';
+import '../../../../Widgets/CustomImagePicker/custom_image_picker.dart';
 import '../../../../Widgets/My Back Button/my_back_button.dart';
 import '../../../../Widgets/My Button/my_button.dart';
 import '../../../../Widgets/My Password TextForm Field/my_password_textform_field.dart';
 import '../../../../Widgets/My Text/my_text.dart';
 import '../../../../Widgets/My TextForm Field/my_textform_field.dart';
+import '../../../../Widgets/UpIcon/up_icon.dart';
 
 class UpdateFinanceManagerDetails extends StatelessWidget {
   const UpdateFinanceManagerDetails({Key? key}) : super(key: key);
@@ -49,94 +51,24 @@ class UpdateFinanceManagerDetails extends StatelessWidget {
                                     arguments: controller.user);
                               },
                             ),
-                            31.h.ph,
-                            Stack(
-                              children: <Widget>[
-                                CircleAvatar(
-                                  radius: 50.0,
-                                  backgroundColor: Colors.white,
-                                  backgroundImage: controller.imageFile == null
-                                      ? NetworkImage(Api.imageBaseUrl +
-                                          controller.financeManager.image
-                                              .toString()) as ImageProvider
-                                      : FileImage(
-                                          File(controller.imageFile!.path),
-                                        ),
-                                ),
-                                Positioned(
-                                  left: 70,
-                                  top: 70,
-                                  child: InkWell(
-                                    onTap: () {
-                                      showModalBottomSheet(
-                                          context: context,
-                                          builder: (context) {
-                                            return Container(
-                                              height: 100.0,
-                                              width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 20, vertical: 20),
-                                              child: Column(
-                                                children: <Widget>[
-                                                  Text(
-                                                    'Choose Profile Photo',
-                                                    style:
-                                                        TextStyle(fontSize: 20),
-                                                  ),
-                                                  SizedBox(height: 20),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
-                                                    children: <Widget>[
-                                                      ElevatedButton.icon(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                                primary:
-                                                                    primaryColor),
-                                                        icon: Icon(
-                                                          Icons.camera,
-                                                        ),
-                                                        onPressed: () {
-                                                          controller
-                                                              .getFromCamera(
-                                                                  ImageSource
-                                                                      .camera);
-                                                        },
-                                                        label: Text('Camera'),
-                                                      ),
-                                                      ElevatedButton.icon(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                                primary:
-                                                                    primaryColor),
-                                                        icon: Icon(Icons.image),
-                                                        onPressed: () {
-                                                          controller
-                                                              .getFromGallery(
-                                                                  ImageSource
-                                                                      .gallery);
-                                                        },
-                                                        label: Text('Gallery'),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          });
-                                    },
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      color: primaryColor,
-                                      size: 28,
+                            21.35.ph,
+                            CustomImagePicker(
+                              backgroundImage: controller.imageFile == null
+                                  ? NetworkImage(Api.imageBaseUrl +
+                                      controller.financeManager.image
+                                          .toString()) as ImageProvider
+                                  : FileImage(
+                                      File(controller.imageFile!.path),
                                     ),
-                                  ),
-                                ),
-                              ],
+                              camOnPressed: () {
+                                controller.getFromCamera(ImageSource.camera);
+                              },
+                              galOnPressed: () {
+                                controller.getFromGallery(ImageSource.gallery);
+                              },
                             ),
+                            
+                            20.ph,
                             MyTextFormField(
                               controller: controller.firstNameController,
                               validator: emptyStringValidator,
@@ -149,7 +81,6 @@ class UpdateFinanceManagerDetails extends StatelessWidget {
                               hintText: 'Last Name',
                               labelText: 'Enter Last Name',
                             ),
-
                             MyTextFormField(
                               controller: controller.addressController,
                               validator: emptyStringValidator,
@@ -163,7 +94,7 @@ class UpdateFinanceManagerDetails extends StatelessWidget {
                               hintText: 'Mobile No',
                               labelText: 'Enter Mobile No ',
                             ),
-
+                            30.ph,
                             MyButton(
                               onPressed: () {
                                 if (controller.formKey.currentState!
@@ -183,127 +114,86 @@ class UpdateFinanceManagerDetails extends StatelessWidget {
                                         token: controller.user.bearerToken!,
                                         file: controller.imageFile,
                                         context: context);
-                                    // controller.addAdminApi(
-                                    //     firstName:
-                                    //     controller.firstNameController.text,
-                                    //     lastName:
-                                    //     controller.lastNameController.text,
-                                    //     cnic: controller.cnicController.text,
-                                    //     address:
-                                    //     controller.addressController.text,
-                                    //     mobileNo:
-                                    //     controller.mobileNoController.text,
-                                    //     password:
-                                    //     controller.passwordController.text,
-                                    //     societyid: controller.user.societyid!,
-                                    //     subAdminId: controller.user.userid!,
-                                    //     superAdminId:
-                                    //     controller.user.superadminid!,
-                                    //     token: controller.user.bearerToken!,
-                                    //     file: controller.imageFile,
-                                    //     context: context);
+                                 
                                   }
                                 }
                               },
                               loading: controller.isLoading,
                               name: 'Update',
                             ),
-
-                            GetBuilder<ResetPasswordController>(
-                                init: ResetPasswordController(),
+                            20.ph,
+                            GetBuilder<FinanceResetPasswordController>(
+                                init: FinanceResetPasswordController(),
                                 builder: (resetPasswordController) {
-                                  return GestureDetector(
-                                      onTap: () {
-                                        Get.defaultDialog(
-                                            title: 'Reset Password',
-                                            content: Form(
-                                              key: resetPasswordController
-                                                  .formKey,
-                                              child: Column(
-                                                children: [
-                                                  SvgPicture.asset(
-                                                    'assets/reset_password_icon.svg',
-                                                    width: 200,
+                                  return Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('Forgot Password?'),
+                                      GestureDetector(
+                                          onTap: () {
+                                            Get.defaultDialog(
+                                                title: 'Reset Password',
+                                                content: Form(
+                                                  key: resetPasswordController
+                                                      .formKey,
+                                                  child: Column(
+                                                    children: [
+                                                      SvgPicture.asset(
+                                                        'assets/reset_password_icon.svg',
+                                                        width: 200.w,
+                                                      ),
+                                                      20.ph,
+                                                      MyPasswordTextFormField(
+                                                          validator:
+                                                              emptyStringValidator,
+                                                          labelText: 'Password',
+                                                          hintText: 'Password',
+                                                          togglePasswordView:
+                                                              resetPasswordController
+                                                                  .togglePasswordView,
+                                                          controller:
+                                                              resetPasswordController
+                                                                  .passwordController,
+                                                          obscureText:
+                                                              resetPasswordController
+                                                                  .isHidden),
+                                                      20.ph,
+                                                      MyButton(
+                                                        name: 'Reset Password',
+                                                        onPressed: () {
+                                                          if (resetPasswordController
+                                                              .formKey
+                                                              .currentState!
+                                                              .validate()) {
+                                                            resetPasswordController.resetPasswordApi(
+                                                                financeManagerId:
+                                                                    controller
+                                                                        .financeManager
+                                                                        .financemanagerid!,
+                                                                bearerToken:
+                                                                    controller
+                                                                        .user
+                                                                        .bearerToken!,
+                                                                password:
+                                                                    resetPasswordController
+                                                                        .passwordController
+                                                                        .text);
+                                                          }
+                                                        },
+                                                      )
+                                                    ],
                                                   ),
-                                                  SizedBox(
-                                                    height: 20,
-                                                  ),
-                                                  MyPasswordTextFormField(
-                                                      validator:
-                                                          emptyStringValidator,
-                                                      labelText: 'Password',
-                                                      hintText: 'Password',
-                                                      togglePasswordView:
-                                                          resetPasswordController
-                                                              .togglePasswordView,
-                                                      controller:
-                                                          resetPasswordController
-                                                              .passwordController,
-                                                      obscureText:
-                                                          resetPasswordController
-                                                              .isHidden),
-                                                  MyButton(
-                                                    name: 'Reset Password',
-                                                    onPressed: () {
-                                                      if (resetPasswordController
-                                                          .formKey.currentState!
-                                                          .validate()) {
-                                                        resetPasswordController.resetPasswordApi(
-                                                            financeManagerId:
-                                                                controller
-                                                                    .financeManager
-                                                                    .financemanagerid!,
-                                                            bearerToken:
-                                                                controller.user
-                                                                    .bearerToken!,
-                                                            password:
-                                                                resetPasswordController
-                                                                    .passwordController
-                                                                    .text);
-                                                      }
-                                                    },
-                                                  )
-                                                ],
-                                              ),
-                                            ));
-                                      },
-                                      child: Wrap(
-                                        children: [
-                                          MyText(name: 'Reset Password')
-                                        ],
-                                      ));
+                                                ));
+                                          },
+                                          child: MyText(
+                                            name: 'Reset',
+                                            color: primaryColor,
+                                          )),
+                                    ],
+                                  );
                                 }),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.05,
-                            ),
-                            // ElevatedButton(
-                            //   onPressed: () {
-                            //     if (controller.formKey.currentState!
-                            //         .validate()) {
-                            //       controller.addAdminApi(
-                            //           firstName:
-                            //               controller.firstNameController.text,
-                            //           lastName:
-                            //               controller.lastNameController.text,
-                            //           cnic: controller.cnicController.text,
-                            //           address:
-                            //               controller.addressController.text,
-                            //           mobileNo:
-                            //               controller.mobileNoController.text,
-                            //           password:
-                            //               controller.passwordController.text,
-                            //           societyid: controller.user.societyid!,
-                            //           subAdminId: controller.user.userid!,
-                            //           superAdminId:
-                            //               controller.user.superadminid!,
-                            //           token: controller.user.bearerToken!,
-                            //           file: controller.imageFile);
-                            //     }
-                            //   },
-                            //   child: controller.isLoading
-                            //       ? CircularProgressIndicator()
-                            //       : Text('Add'),
-                            // )
+                            35.ph,
+                            UpIcon()
                           ],
                         ),
                       ),

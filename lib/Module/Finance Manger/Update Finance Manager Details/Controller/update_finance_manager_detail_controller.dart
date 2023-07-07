@@ -10,9 +10,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:societyadminapp/Module/Finance%20Manger/View%20Finance%20Manager/Model/FinanceManagerModel.dart';
 
 import '../../../../Constants/api_routes.dart';
+import '../../../../Routes/set_routes.dart';
 import '../../../../Widgets/My Button/my_button.dart';
 import '../../../../Model/User.dart';
-
 
 class UpdateFinanceManagerDetailController extends GetxController {
   final formKey = new GlobalKey<FormState>();
@@ -114,8 +114,10 @@ class UpdateFinanceManagerDetailController extends GetxController {
       update();
       var data = jsonDecode(response.body.toString());
       print(data);
+
       showDialogBox(context,
           title: 'Success', data: data['message'].toString());
+      Get.offNamed(viewFinanceManager, arguments: user);
 
       // Get.toNamed(login);
     } else if (response.statusCode == 403) {

@@ -65,12 +65,6 @@ class AddMeasurementController extends GetxController {
     required String appCharges,
     required String tax,
   }) async {
-    print(userid);
-    print(bearerToken);
-    print(propertyType);
-    print(unitType);
-    print(charges);
-    print(area);
     isLoading = true;
     update();
     final response = await Http.post(
@@ -128,6 +122,8 @@ class AddMeasurementController extends GetxController {
       {required int subadminid,
       required String token,
       required String type}) async {
+    isLoading = true;
+    update();
     final response = await Http.get(
       Uri.parse(Api.housesApartmentMeasurements +
           "/" +
@@ -142,6 +138,8 @@ class AddMeasurementController extends GetxController {
     var data = jsonDecode(response.body.toString());
 
     if (response.statusCode == 200) {
+      isLoading = false;
+      update();
       return MeasurementModel.fromJson(data);
     }
     return MeasurementModel.fromJson(data);

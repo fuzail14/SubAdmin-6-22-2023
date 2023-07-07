@@ -62,8 +62,8 @@ class HomeScreen extends GetView {
             ),
           ),
           backgroundColor: HexColor('#F5F5F5'),
-          body: OrientationBuilder(builder: (context, orientation) {
-            return Column(children: [
+          body: SingleChildScrollView(
+            child: Column(children: [
               // drawer title n bell
               Padding(
                 padding: EdgeInsets.only(
@@ -229,6 +229,15 @@ class HomeScreen extends GetView {
                           icon: 'assets/reports.svg',
                           text: 'Residential\nEmergency',
                         ),
+                        11.pw,
+                        AdminScreenContainer(
+                          onTap: () async {
+                            Get.offNamed(viewFinanceManager,
+                                arguments: controller.user);
+                          },
+                          icon: 'assets/reports.svg',
+                          text: 'Finance\nManager',
+                        ),
                       ],
                     ),
                   ],
@@ -237,8 +246,8 @@ class HomeScreen extends GetView {
 
               50.ph,
               UpIcon(),
-            ]);
-          }),
+            ]),
+          ),
         ),
       ),
     );

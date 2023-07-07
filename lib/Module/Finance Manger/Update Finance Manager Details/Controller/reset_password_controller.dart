@@ -6,7 +6,7 @@ import 'package:http/http.dart' as Http;
 
 import '../../../../Constants/api_routes.dart';
 
-class ResetPasswordController extends GetxController {
+class FinanceResetPasswordController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   var isHidden = false;
   final formKey = new GlobalKey<FormState>();

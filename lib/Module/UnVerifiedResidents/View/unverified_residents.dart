@@ -148,22 +148,20 @@ class UnVerifiedResident extends GetView {
                               ),
                             ),
                             30.ph,
-
                             Expanded(
-                              child: TabBarView(children: [
-                                //HOUSE VERIFICATION
-                                FutureBuilder(
-                                    future:
-                                        controller.viewUnVerifiedResidentApi(
-                                            subadminid:
+                              child: TabBarView(
+                                children: [
+                                  // HOUSE VERIFICATION
+                                  GetBuilder<UnVerifiedResidentController>(
+                                      id: 'houseTab',
+                                      builder: (controller) {
+                                        final cachedData = controller
+                                            .getCachedUnverifiedResidentData(
                                                 controller.userdata.userid!,
-                                            token: controller
-                                                .userdata.bearerToken!,
-                                            status: 0),
-                                    builder: (context, AsyncSnapshot snapshot) {
-                                      if (snapshot.hasData) {
-                                        if (snapshot.data.data != null &&
-                                            snapshot.data.data!.length != 0) {
+                                                controller
+                                                    .userdata.bearerToken!,
+                                                0);
+                                        if (cachedData != null) {
                                           return ListView.builder(
                                             itemBuilder: (context, index) {
                                               return UnverifiedCard(
@@ -172,87 +170,214 @@ class UnVerifiedResident extends GetView {
                                                       houseresidentverification,
                                                       arguments: [
                                                         controller.userdata,
-                                                        snapshot
-                                                            .data.data[index]
+                                                        cachedData[index]
                                                       ]);
                                                 },
-                                                name: snapshot.data.data[index]
+                                                name: cachedData[index]
                                                         .firstname
                                                         .toString() +
                                                     ' ' +
-                                                    snapshot.data.data[index]
+                                                    cachedData[index]
                                                         .lastname
                                                         .toString(),
-                                                mobileno: snapshot
-                                                    .data.data[index].mobileno
+                                                mobileno: cachedData[index]
+                                                    .mobileno
                                                     .toString(),
                                               );
                                             },
-                                            itemCount:
-                                                snapshot.data.data.length,
+                                            itemCount: cachedData.length,
                                           );
                                         } else {
-                                          return Container();
-                                        }
-                                      } else if (snapshot.hasError) {
-                                        return Icon(Icons.error_outline);
-                                      } else {
-                                        return Loader();
-                                      }
-                                    }),
-                                FutureBuilder(
-                                    future: controller
-                                        .viewUnVerifiedApartmentResidentApi(
-                                            subadminid:
-                                                controller.userdata.userid!,
-                                            token: controller
-                                                .userdata.bearerToken!,
-                                            status: 0),
-                                    builder: (context, AsyncSnapshot snapshot) {
-                                      if (snapshot.hasData) {
-                                        if (snapshot.data.data != null &&
-                                            snapshot.data.data!.length != 0) {
-                                          return ListView.builder(
-                                            itemBuilder: (context, index) {
-
-                                              return UnverifiedCard(
-                                                  onTap: () {
-                                                    Get.offNamed(
-                                                        apartmentresidentverification,
-                                                        arguments: [
-                                                          controller.userdata,
-                                                          snapshot.data
-                                                              .data[index]
-                                                        ]);
-                                                  },
-                                                  name: snapshot
-                                                          .data
-                                                          .data[index]
-                                                          .firstname
-                                                          .toString() +
-                                                      ' ' +
-                                                      snapshot
-                                                          .data
-                                                          .data[index]
-                                                          .lastname
-                                                          .toString(),
-                                                  mobileno: snapshot.data
-                                                      .data[index].mobileno
-                                                      .toString());
+                                          return FutureBuilder(
+                                            future: controller
+                                                .viewUnVerifiedResidentApi(
+                                              subadminid:
+                                                  controller.userdata.userid!,
+                                              token: controller
+                                                  .userdata.bearerToken!,
+                                              status: 0,
+                                            ),
+                                            builder: (context,
+                                                AsyncSnapshot snapshot) {
+                                              if (snapshot.connectionState ==
+                                                  ConnectionState.waiting) {
+                                                return Loader();
+                                              } else if (snapshot.hasData) {
+                                                if (snapshot.data.data !=
+                                                        null &&
+                                                    snapshot.data.data!
+                                                            .length !=
+                                                        0) {
+                                                  controller
+                                                      .cacheUnverifiedResidentData(
+                                                          snapshot.data.data,
+                                                          0);
+                                                  return ListView.builder(
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      return UnverifiedCard(
+                                                        onTap: () {
+                                                          Get.offNamed(
+                                                              houseresidentverification,
+                                                              arguments: [
+                                                                controller
+                                                                    .userdata,
+                                                                snapshot.data
+                                                                    .data[index]
+                                                              ]);
+                                                        },
+                                                        name: snapshot
+                                                                .data
+                                                                .data[index]
+                                                                .firstname
+                                                                .toString() +
+                                                            ' ' +
+                                                            snapshot
+                                                                .data
+                                                                .data[index]
+                                                                .lastname
+                                                                .toString(),
+                                                        mobileno: snapshot
+                                                            .data
+                                                            .data[index]
+                                                            .mobileno
+                                                            .toString(),
+                                                      );
+                                                    },
+                                                    itemCount: snapshot
+                                                        .data.data.length,
+                                                  );
+                                                } else {
+                                                  return EmptyList(
+                                                    name:
+                                                        'No Resident for Verification',
+                                                  );
+                                                }
+                                              } else if (snapshot.hasError) {
+                                                return Icon(
+                                                    Icons.error_outline);
+                                              } else {
+                                                return EmptyList(
+                                                  name:
+                                                      'No Resident for Verification',
+                                                );
+                                              }
                                             },
-                                            itemCount:
-                                                snapshot.data.data.length,
                                           );
-                                        } else {
-                                          return Container();
                                         }
-                                      } else if (snapshot.hasError) {
-                                        return Icon(Icons.error_outline);
+                                      }),
+
+                                  // APARTMENT VERIFICATION
+                                  GetBuilder<UnVerifiedResidentController>(
+                                    id: 'apartmentTab',
+                                    builder: (controller) {
+                                      final cachedData = controller
+                                          .getCachedUnverifiedResidentData(
+                                              controller.userdata.userid!,
+                                              controller.userdata.bearerToken!,
+                                              1);
+                                      if (cachedData != null) {
+                                        return ListView.builder(
+                                          itemBuilder: (context, index) {
+                                            return UnverifiedCard(
+                                              onTap: () {
+                                                Get.offNamed(
+                                                    apartmentresidentverification,
+                                                    arguments: [
+                                                      controller.userdata,
+                                                      cachedData[index]
+                                                    ]);
+                                              },
+                                              name: cachedData[index]
+                                                      .firstname
+                                                      .toString() +
+                                                  ' ' +
+                                                  cachedData[index]
+                                                      .lastname
+                                                      .toString(),
+                                              mobileno: cachedData[index]
+                                                  .mobileno
+                                                  .toString(),
+                                            );
+                                          },
+                                          itemCount: cachedData.length,
+                                        );
                                       } else {
-                                        return Loader();
+                                        return FutureBuilder(
+                                          future: controller
+                                              .viewUnVerifiedApartmentResidentApi(
+                                                  subadminid: controller
+                                                      .userdata.userid!,
+                                                  token: controller
+                                                      .userdata.bearerToken!,
+                                                  status: 0),
+                                          builder: (context,
+                                              AsyncSnapshot snapshot) {
+                                            if (snapshot.connectionState ==
+                                                ConnectionState.waiting) {
+                                              return Loader();
+                                            } else if (snapshot.hasData) {
+                                              if (snapshot.data.data != null &&
+                                                  snapshot.data.data!.length !=
+                                                      0) {
+                                                controller
+                                                    .cacheUnverifiedResidentData(
+                                                        snapshot.data.data, 1);
+                                                return ListView.builder(
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return UnverifiedCard(
+                                                        onTap: () {
+                                                          Get.offNamed(
+                                                              apartmentresidentverification,
+                                                              arguments: [
+                                                                controller
+                                                                    .userdata,
+                                                                snapshot.data
+                                                                    .data[index]
+                                                              ]);
+                                                        },
+                                                        name: snapshot
+                                                                .data
+                                                                .data[index]
+                                                                .firstname
+                                                                .toString() +
+                                                            ' ' +
+                                                            snapshot
+                                                                .data
+                                                                .data[index]
+                                                                .lastname
+                                                                .toString(),
+                                                        mobileno: snapshot
+                                                            .data
+                                                            .data[index]
+                                                            .mobileno
+                                                            .toString());
+                                                  },
+                                                  itemCount:
+                                                      snapshot.data.data.length,
+                                                );
+                                              } else {
+                                                return EmptyList(
+                                                  name:
+                                                      'No Resident for Verification',
+                                                );
+                                              }
+                                            } else if (snapshot.hasError) {
+                                              return Icon(Icons.error_outline);
+                                            } else {
+                                              return EmptyList(
+                                                name:
+                                                    'No Resident for Verification',
+                                              );
+                                            }
+                                          },
+                                        );
                                       }
-                                    }),
-                              ]),
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         )),

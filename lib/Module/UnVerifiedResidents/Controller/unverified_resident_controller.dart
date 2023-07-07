@@ -11,6 +11,7 @@ import '../Model/Resident Model/LocalBuildingApartmentResidentModel.dart';
 class UnVerifiedResidentController extends GetxController {
   var user = Get.arguments;
   late final User userdata;
+  Map<int, List<dynamic>> cache = {};
 
   @override
   void onInit() {
@@ -99,5 +100,22 @@ class UnVerifiedResidentController extends GetxController {
     }
 
     return LocalBuildingApartmentResidentModel.fromJson(data);
+  }
+
+  List<dynamic>? getCachedUnverifiedResidentData(
+      int subadminid, String token, int tabIndex) {
+    final cacheKey = _generateCacheKey(subadminid, token, tabIndex);
+    return cache[cacheKey];
+  }
+
+  void cacheUnverifiedResidentData(List<dynamic> data, int tabIndex) {
+    final cacheKey =
+        _generateCacheKey(userdata.userid!, userdata.bearerToken!, tabIndex);
+    cache[cacheKey] = data;
+  }
+
+  int _generateCacheKey(int subadminid, String token, int tabIndex) {
+    final key = '$subadminid-$token-$tabIndex';
+    return key.hashCode;
   }
 }

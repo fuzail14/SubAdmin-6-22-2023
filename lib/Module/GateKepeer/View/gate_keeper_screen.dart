@@ -59,13 +59,11 @@ class GateKeeperScreen extends GetView {
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                               ),
-
                                               child: SizedBox(
                                                 height: 450.h,
                                                 child: Padding(
                                                   padding: EdgeInsets.all(12),
                                                   child: Column(
-
                                                     children: [
                                                       Column(
                                                         children: [
@@ -158,6 +156,7 @@ class GateKeeperScreen extends GetView {
                                               ),
                                             );
                                           });
+                                   
                                     },
                                     child: ResidentsNGateKeeperViewCard(
                                       image: Api.imageBaseUrl +

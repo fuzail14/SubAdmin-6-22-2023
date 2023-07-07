@@ -145,9 +145,10 @@ class AddMeasurements extends GetView {
                           height: 52.h,
                           borderRadius: BorderRadius.circular(12.r),
                           name: 'Add',
-                          onPressed: controller.isLoading
-                              ? null
-                              : () async {
+                          loading: controller.isLoading,
+                          onPressed: 
+                               () async {
+                                if(!controller.isLoading)
                                   if (controller.propertyVal == null) {
                                     Get.snackbar(
                                         'Required', 'Select Property Type');

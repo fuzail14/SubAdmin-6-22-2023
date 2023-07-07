@@ -12,6 +12,7 @@ import 'package:societyadminapp/Widgets/UpIcon/up_icon.dart';
 import '../../../Constants/api_routes.dart';
 import '../../../Constants/constants.dart';
 import '../../../Routes/set_routes.dart';
+import '../../../Widgets/CustomImagePicker/custom_image_picker.dart';
 import '../../../Widgets/My Back Button/my_back_button.dart';
 import '../../../Widgets/My Button/my_button.dart';
 import '../../../Widgets/My Password TextForm Field/my_password_textform_field.dart';
@@ -46,90 +47,20 @@ class UpdateGateKepeerScreen extends GetView {
                           },
                         ),
                         21.35.ph,
-                        Stack(
-                          children: <Widget>[
-                            FittedBox(
-                              fit: BoxFit.contain,
-                              alignment: Alignment.center,
-                              child: CircleAvatar(
-                                radius: 50.0,
-                                backgroundColor: Colors.white,
-                                backgroundImage: controller.imageFile == null
-                                    ? NetworkImage(Api.imageBaseUrl +
-                                        controller.gatekeeper.image
-                                            .toString()) as ImageProvider
-                                    : FileImage(
-                                        File(controller.imageFile!.path),
-                                      ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 68.w,
-                              top: 50.h,
-                              child: InkWell(
-                                onTap: () {
-                                  showModalBottomSheet(
-                                      context: context,
-                                      builder: (context) {
-                                        return Container(
-                                          height: 80.0.h,
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 20.w, vertical: 20.h),
-                                          child: Column(
-                                            children: <Widget>[
-                                              Text(
-                                                'Choose Profile Photo',
-                                                style: TextStyle(
-                                                    fontSize: 20.font),
-                                              ),
-                                              20.ph,
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: <Widget>[
-                                                  ElevatedButton.icon(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                            primary:
-                                                                primaryColor),
-                                                    icon: Icon(Icons.camera),
-                                                    onPressed: () {
-                                                      controller.getFromCamera(
-                                                          ImageSource.camera);
-                                                    },
-                                                    label: Text('Camera'),
-                                                  ),
-                                                  ElevatedButton.icon(
-                                                    style: ElevatedButton
-                                                        .styleFrom(
-                                                            primary:
-                                                                primaryColor),
-                                                    icon: Icon(Icons.image),
-                                                    onPressed: () {
-                                                      controller.getFromGallery(
-                                                          ImageSource.gallery);
-                                                    },
-                                                    label: Text('Gallery'),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      });
-                                },
-                                child: Icon(
-                                  Icons.camera_alt,
-                                  color: primaryColor,
-                                  size: 28,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        CustomImagePicker(
+                            backgroundImage: controller.imageFile == null
+                                ? NetworkImage(Api.imageBaseUrl +
+                                        controller.gatekeeper.image.toString())
+                                    as ImageProvider
+                                : FileImage(
+                                    File(controller.imageFile!.path),
+                                  ),
+                            camOnPressed: () {
+                              controller.getFromCamera(ImageSource.camera);
+                            },
+                            galOnPressed: () {
+                              controller.getFromGallery(ImageSource.gallery);
+                            }),
                         20.ph,
                         MyTextFormField(
                           controller: controller.fnameController,

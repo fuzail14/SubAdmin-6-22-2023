@@ -6,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:societyadminapp/Constants/constants.dart';
 
 import 'package:societyadminapp/Routes/set_routes.dart';
 import 'package:societyadminapp/Services/Shared%20Preferences/MySharedPreferences.dart';
@@ -41,7 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
