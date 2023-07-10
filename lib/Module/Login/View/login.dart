@@ -29,7 +29,7 @@ class Login extends GetView {
                   key: _formKey,
                   child: Column(children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(44.w, 68.h, 44.w, 0),
+                      padding: EdgeInsets.fromLTRB(44.w, 45.h, 44.w, 0),
                       child: Image.asset(
                         "assets/login_vector.jpg",
                       ),
@@ -74,13 +74,17 @@ class Login extends GetView {
                         obscureText: controller.isHidden),
                     18.ph,
                     MyButton(
+                      loading: controller.loading,
                       height: 43.h,
                       width: 173.w,
                       color: primaryColor,
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          controller.loginApi(controller.userCnicController.text,
-                              controller.userPasswordController.text);
+                        if (!controller.loading) {
+                          if (_formKey.currentState!.validate()) {
+                            controller.loginApi(
+                                controller.userCnicController.text,
+                                controller.userPasswordController.text);
+                          }
                         }
                       },
                       name: 'Login',

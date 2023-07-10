@@ -8,13 +8,14 @@ import 'package:societyadminapp/Routes/set_routes.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Model/User.dart';
 
-
 class AddSocietyBuildingApartmentsController extends GetxController {
   var argumnet = Get.arguments;
   int? fid;
   int? bid;
 
   bool isLoading = false;
+  GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  
 
   late final User user;
   final fromController = TextEditingController();
@@ -29,7 +30,6 @@ class AddSocietyBuildingApartmentsController extends GetxController {
     user = argumnet[0];
     fid = argumnet[1];
     bid = argumnet[2];
-    
   }
 
   addApartmentsApi({
@@ -38,11 +38,6 @@ class AddSocietyBuildingApartmentsController extends GetxController {
     required String from,
     required String to,
   }) async {
-    print(bearerToken);
-    print(fid);
-    print(from);
-    print(to);
-
     isLoading = true;
     update();
 
@@ -60,9 +55,6 @@ class AddSocietyBuildingApartmentsController extends GetxController {
     print(response.body);
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body.toString());
-      print(data);
-      print(response.body);
       Get.snackbar("Apartments Add Successfully", "");
       Get.offAndToNamed(societybuildingapartmentscreen,
           arguments: [user, fid, bid]);

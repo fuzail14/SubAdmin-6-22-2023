@@ -9,14 +9,13 @@ import 'package:societyadminapp/Module/AddSocietyDetail/Houses/Model/Houses.dart
 import '../../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../../../../Model/User.dart';
 
-
-
 class HouseController extends GetxController {
   var data = Get.arguments;
   // int? sid ;
   // int? bid ;
   // int? pid ;
   // String? bearerToken;
+  int apiCount = 0;
 
   User user = User(
       structureType: 0,
@@ -85,6 +84,7 @@ class HouseController extends GetxController {
     // } else if (user.structureType == 2) {
     //   type = 'street';
     // }
+    print('house api count ${apiCount++}');
 
     String type;
     if (user.structureType == 5) {

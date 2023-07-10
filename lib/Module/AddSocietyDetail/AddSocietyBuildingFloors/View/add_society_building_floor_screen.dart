@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:societyadminapp/Widgets/Extensions/extensions.dart';
 import 'package:societyadminapp/Widgets/My%20Back%20Button/my_back_button.dart';
+import 'package:societyadminapp/Widgets/My%20Text/my_text.dart';
 import '../../../../Constants/constants.dart';
 import '../../../../Routes/set_routes.dart';
 import '../../../../Widgets/My Button/my_button.dart';
 import '../Controller/add_society_building_floor_controller.dart';
 
 class AddSocietyBuildingFloors extends GetView {
-  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddSocietyBuildingFloorsController>(
@@ -21,108 +22,105 @@ class AddSocietyBuildingFloors extends GetView {
 
               return false;
             },
-            child: Scaffold(
-              body: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.only(top: 5.0, left: 10.0, right: 10.0),
-                  child: Form(
-                    key: _formKey,
-                    child: ListView(
-                      children: <Widget>[
-                        MyBackButton(
-                          onTap: () {
-                            Get.offAndToNamed(societybuildingfloorsscreen,
-                                arguments: [
-                                  controller.user,
-                                  controller.buildingid
-                                ]);
-                          },
-                          text: 'Add Floors',
-                        ),
-                        SizedBox(height: 20),
-                        Card(
+            child: SafeArea(
+              child: Scaffold(
+                body: Form(
+                  key: controller.formKey,
+                  child: ListView(
+                    children: <Widget>[
+                      MyBackButton(
+                        onTap: () {
+                          Get.offAndToNamed(societybuildingfloorsscreen,
+                              arguments: [
+                                controller.user,
+                                controller.buildingid
+                              ]);
+                        },
+                        text: 'Add Floors',
+                      ),
+                      20.ph,
+                      SizedBox(
+                        height: 200.h,
+                        child: Card(
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.r)),
                           child: Column(
                             children: [
-                              SizedBox(
-                                height: 20,
-                              ),
+                              20.ph,
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Text('From Floors'),
-                                  Text('To Floors'),
+                                  MyText(name: 'From Floors'),
+                                  MyText(name: 'To Floors')
                                 ],
                               ),
+                              10.ph,
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SizedBox(
-                                      width: 70,
-                                      child: TextFormField(
-                                        validator: emptyStringValidator,
-                                        controller: controller.fromController,
-                                        keyboardType: TextInputType.number,
-                                        enabled: true,
-                                        decoration: InputDecoration(
-                                            filled: true,
-                                            errorBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              borderSide:
-                                                  BorderSide(), //<-- SEE HERE
-                                            ),
-                                            border: InputBorder.none),
-                                      ),
+                                  SizedBox(
+                                    width: 70.w,
+                                    child: TextFormField(
+                                      validator: emptyStringValidator,
+                                      controller: controller.fromController,
+                                      keyboardType: TextInputType.number,
+                                      enabled: true,
+                                      decoration: InputDecoration(
+                                          filled: true,
+                                          errorBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8.r),
+                                            borderSide:
+                                                BorderSide(), //<-- SEE HERE
+                                          ),
+                                          border: InputBorder.none),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: SizedBox(
-                                      width: 70,
-                                      child: TextFormField(
-                                        validator: emptyStringValidator,
-                                        controller: controller.toController,
-                                        keyboardType: TextInputType.number,
-                                        enabled: true,
-                                        decoration: InputDecoration(
-                                            filled: true,
-                                            errorBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              borderSide:
-                                                  BorderSide(), //<-- SEE HERE
-                                            ),
-                                            border: InputBorder.none),
-                                      ),
+                                  SizedBox(
+                                    width: 70.w,
+                                    child: TextFormField(
+                                      validator: emptyStringValidator,
+                                      controller: controller.toController,
+                                      keyboardType: TextInputType.number,
+                                      enabled: true,
+                                      decoration: InputDecoration(
+                                          filled: true,
+                                          errorBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8.r),
+                                            borderSide:
+                                                BorderSide(), //<-- SEE HERE
+                                          ),
+                                          border: InputBorder.none),
                                     ),
                                   )
                                 ],
                               ),
-                              SizedBox(
-                                height: 20,
-                              ),
+                              40.ph,
+                              MyButton(
+                                loading: controller.isLoading,
+                                onPressed: () {
+                                  if (!controller.isLoading) {
+                                    controller.addSocietybuildingFloorsApi(
+                                        bearerToken:
+                                            controller.user.bearerToken!,
+                                        from: controller.fromController.text
+                                            .toString(),
+                                        to: controller.toController.text
+                                            .toString(),
+                                        buildingid: controller.buildingid!);
+                                  }
+                                },
+                                name: 'Save',
+                              )
                             ],
                           ),
                         ),
-                        MyButton(
-                          onPressed: () {
-                            // print(controller.user.userid);
-                            // print(controller.user.bearerToken);
-
-                            controller.addSocietybuildingFloorsApi(
-                                bearerToken: controller.user.bearerToken!,
-                                from: controller.fromController.text.toString(),
-                                to: controller.toController.text.toString(),
-                                buildingid: controller.buildingid!);
-                          },
-                          name: 'Save',
-                        )
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

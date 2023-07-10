@@ -28,6 +28,9 @@ class LoginController extends GetxController {
     print(cnic);
     print(password);
     print("=========");
+    loading = true;
+    update();
+
     try {
       final response = await Http.post(
         Uri.parse(Api.login),
@@ -44,6 +47,9 @@ class LoginController extends GetxController {
       print(response.body);
       var data = jsonDecode(response.body);
       if (response.statusCode == 200 && data['data']['roleid'] == 2) {
+        loading = false;
+        update();
+
         final SocietyModel societyModel =
             await viewSocietyApi(data['data']['societyid'], data['Bearer']);
 
@@ -87,17 +93,26 @@ class LoginController extends GetxController {
           backgroundColor: Colors.white,
         );
       } else if (response.statusCode == 200 && data['data']['roleid'] != 2) {
+        loading = false;
+        update();
+
         Get.snackbar(
           "Login Failed",
           'You are not Register to our System. Contact Admin !',
           backgroundColor: Colors.white,
         );
       } else if (response.statusCode == 401) {
+        loading = false;
+        update();
+
         var data = jsonDecode(response.body.toString());
 
         print(data['data']);
         Get.snackbar('Unauthorized', 'Invalid Cnic or Password');
       } else if (response.statusCode == 403) {
+        loading = false;
+        update();
+
         var data = jsonDecode(response.body.toString());
 
         if ((data['errors'] as List).contains('The cnic field is required.')) {

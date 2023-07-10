@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:societyadminapp/Module/AddSocietyDetail/Widget/Custom_Grid.dart';
+import 'package:societyadminapp/Widgets/Extensions/extensions.dart';
 import 'package:societyadminapp/Widgets/Loader/loader.dart';
 import 'package:societyadminapp/Widgets/My%20Back%20Button/my_back_button.dart';
 import '../../../../Routes/set_routes.dart';
@@ -38,7 +39,7 @@ class SocietyBuildingScreen extends GetView {
             child: SafeArea(
               child: Scaffold(
                   floatingActionButton: IconButton(
-                      padding: EdgeInsets.only(top: 85),
+                      padding: EdgeInsets.only(top: 85.h),
                       iconSize: MediaQuery.of(context).size.height * 0.065,
                       icon: SvgPicture.asset('assets/floatingbutton.svg'),
                       onPressed: () {
@@ -76,13 +77,11 @@ class SocietyBuildingScreen extends GetView {
                                 if (snapshot.hasData) {
                                   return Column(
                                     children: [
-                                      SizedBox(
-                                        height: 32,
-                                      ),
+                                      32.ph,
                                       Expanded(
                                         child: GridView.builder(
                                           padding: EdgeInsets.only(
-                                              left: 28, right: 27),
+                                              left: 28.w, right: 27.w),
                                           itemCount: snapshot.data.data.length,
                                           gridDelegate:
                                               SliverGridDelegateWithFixedCrossAxisCount(
@@ -91,9 +90,7 @@ class SocietyBuildingScreen extends GetView {
                                                   mainAxisSpacing: 15),
                                           itemBuilder: (BuildContext context,
                                               int index) {
-                                            // controller.setNoOfPhases(snapshot.data.noofphases.toString());
-                                            // controller.noofphases= snapshot.data.noofphases.toString();
-                                            return GestureDetector(
+                                            return CustomGrid(
                                               onTap: () async {
                                                 Get.offAndToNamed(
                                                     societybuildingfloorsscreen,
@@ -103,54 +100,8 @@ class SocietyBuildingScreen extends GetView {
                                                           .data.data[index].id,
                                                     ]);
                                               },
-                                              child: Card(
-                                                elevation: 1.5,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                      height: 60,
-                                                      width: 60,
-                                                      decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        gradient: LinearGradient(
-                                                            begin: Alignment
-                                                                .topCenter,
-                                                            end: Alignment
-                                                                .bottomCenter,
-                                                            colors: [
-                                                              HexColor(
-                                                                  '#FFFFFF'),
-                                                              HexColor(
-                                                                  '#FF9900')
-                                                            ]),
-                                                      ),
-                                                      child: Image(
-                                                          image: AssetImage(
-                                                              'assets/phasepic.png')),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 8,
-                                                    ),
-                                                    Text(
-                                                      snapshot.data.data[index]
-                                                          .societybuildingname,
-                                                      style: GoogleFonts.ubuntu(
-                                                          fontStyle:
-                                                              FontStyle.normal,
-
-                                                          // color: secondaryColor,
-
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 18,
-                                                          color: HexColor(
-                                                              '#FF9900')),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
+                                              text: snapshot.data.data[index]
+                                                  .societybuildingname,
                                             );
                                           },
                                         ),
@@ -163,17 +114,6 @@ class SocietyBuildingScreen extends GetView {
                                   return Loader();
                                 }
                               })),
-                      //                 MyButton(
-                      //                     name: 'Next',
-                      //                     onPressed: controller.isLoading
-                      //                         ? null
-                      //                         : () {
-                      //                             if (controller.formkey.currentState!.validate()) {
-                      // print(controller.myApiData);
-                      //                             } else {
-                      //                               return null;
-                      //                             }
-                      //                           })
                     ],
                   )),
             ),

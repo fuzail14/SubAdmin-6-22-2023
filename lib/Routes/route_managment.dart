@@ -78,22 +78,22 @@ class RouteManagement {
           name: splashscreen,
           page: () => SplashScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: login,
           page: () => Login(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: homescreen,
           page: () => HomeScreen(),
           binding: ScreenBindings(),
-          transition: Transition.rightToLeft),
+          transition: Transition.noTransition),
       GetPage(
           name: viewuser,
           page: () => ViewResidents(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       // GetPage(
       //     name: updateresidentdetails,
@@ -109,115 +109,115 @@ class RouteManagement {
           name: gatekeeperscreen,
           page: () => GateKeeperScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addgatekeeperscreen,
           page: () => AddGateKeeper(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: updategatekeeperscreen,
           page: () => UpdateGateKepeerScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: gateKepeerDetailScreen,
           page: () => GateKepeerDetailScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: eventsscreen,
           page: () => EventsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addeventsscreen,
           page: () => AddEventsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: updateevent,
           page: () => UpdateEvent(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: adminprofilescreen,
           page: () => AdminProfileScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: reportnotificationsscreen,
           page: () => ReportNotificationsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: viewreportscreen,
           page: () => ReportedResidentListScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: userreportslistscreen,
           page: () => UserReportsListScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: noticeboardscreen,
           page: () => NoticeBoardScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addnoticeboardscreen,
           page: () => AddNoticeBoardScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: updatenoticeboardscreen,
           page: () => UpdateNoticeBoardScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: vieweventimages,
           page: () => ViewEventImages(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: viewheroimage,
           page: () => ViewImage(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addphases,
           page: () => AddPhases(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: phasess,
           page: () => Phases(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: blocks,
           page: () => Blocks(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addblocks,
           page: () => AddBlocks(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: streets,
           page: () => Street(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addstreets,
           page: () => AddStreets(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
         name: addhouses,
         page: () => AddHouses(),
@@ -227,193 +227,193 @@ class RouteManagement {
           name: houses,
           page: () => Houses(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: unverifiedresident,
           page: () => UnVerifiedResident(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: addmeasurements,
           page: () => AddMeasurements(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: measurementview,
           page: () => MeasurementView(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: houseresidentverification,
           page: () => HouseResidentVerification(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: generatehousebills,
           page: () => GenerateHouseBill(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: generatedhousebills,
           page: () => GeneratedHouseBill(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: blockorbuilding,
           page: () => BlockOrBuilding(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: societybuildingscreen,
           page: () => SocietyBuildingScreen(),
           binding: ScreenBindings(),
-          transition: Transition.rightToLeft),
+          transition: Transition.noTransition),
 
       GetPage(
           name: addsocietybuildingscreen,
           page: () => AddSocietyBuildingScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: societybuildingfloorsscreen,
           page: () => SocietyBuildingFloorsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addsocietybuildingfloors,
           page: () => AddSocietyBuildingFloors(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: societybuildingapartmentscreen,
           page: () => SocietyBuildingApartmentScreen(),
           binding: ScreenBindings(),
-          transition: Transition.rightToLeft),
+          transition: Transition.noTransition),
 
       GetPage(
           name: addsocietybuildingapartmentsscreen,
           page: () => AddSocietyBuildingApartmentsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.rightToLeft),
+          transition: Transition.noTransition),
       GetPage(
           name: streetorbuildingscreen,
           page: () => StreetOrBuildingScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: blockorsocietybuilding,
           page: () => BlockOrSocietyBuilding(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: phaseorsocietybuilding,
           page: () => PhaseOrSocietyBuilding(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: blockbuildingorstreet,
           page: () => BlockBuildingOrStreet(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: blockbuilding,
           page: () => BlockBuilding(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: addblockbuildingscreen,
           page: () => AddBlockBuildingScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: phasebuildingorblock,
           page: () => PhaseBuildingOrBlock(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: blockorphasebuildingfloorsscreen,
           page: () => BlockOrPhaseBuildingFloorsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addblockorphasebuildingfloors,
           page: () => AddBlockOrPhaseBuildingFloors(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: blockOrphasebuildingapartmentsscreen,
           page: () => BlockOrPhaseBuildingApartmentsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addblockorphasebuildingapartmentsscreen,
           page: () => AddBlockOrPhaseBuildingApartmentsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: localbuildingscreen,
           page: () => LocalBuildingScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: localbuildingfloorsscreen,
           page: () => LocalBuildingFloorsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: addlocalbuildingfloors,
           page: () => AddLocalBuildingFloors(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: localbuildingapartmentscreen,
           page: () => LocalBuildingApartmentScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: addlocalbuildingapartmentsscreen,
           page: () => AddLocalBuildingApartmentsScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: structureType5HouseOrBuildingMiddlewareScreen,
           page: () => StructureType5HouseOrBuildingMiddlewareScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: apartmentresidentverification,
           page: () => ApartmentResidentVerification(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: localBuildingApartmentResidentVerification,
           page: () => LocalBuildingApartmentResidentVerification(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
 
       GetPage(
           name: generatesocietyapartmentbills,
           page: () => GenerateSocietyApartmentBills(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: generatedsocietyapartmentbills,
           page: () => GeneratedSocietyApartmentBills(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: residentialEmergencyScreen,
           page: () => ResidentialEmergencyScreen(),
           binding: ScreenBindings(),
-          transition: Transition.leftToRight),
+          transition: Transition.noTransition),
       GetPage(
           name: viewFinanceManager,
           page: () => ViewFinanceManager(),

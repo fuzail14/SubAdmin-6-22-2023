@@ -1,6 +1,6 @@
 class Api {
-  static const String imageBaseUrl = 'http://192.168.2.45:8080/storage/';
-  static const String baseUrl = 'http://192.168.2.45:8080/api/';
+  static const String imageBaseUrl = 'http://192.168.2.48:8080/storage/';
+  static const String baseUrl = 'http://192.168.2.48:8080/api/';
   static const String login = baseUrl + "login";
   static const String fcmTokenRefresh = baseUrl + "fcmtokenrefresh";
   static const String registerResident = baseUrl + "registerresident";

@@ -16,6 +16,7 @@ class AddSocietyBuildingFloorsController extends GetxController {
   late final User user;
 
   bool isLoading = false;
+  GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
   @override
   void onInit() {
@@ -51,17 +52,11 @@ class AddSocietyBuildingFloorsController extends GetxController {
     var responsed = await request.send();
     var response = await Http.Response.fromStream(responsed);
 
-    print(response.body);
-
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body.toString());
-      print(data);
-      print(response.body);
       Get.snackbar("Floors Add Successfully", "");
 
       Get.offAndToNamed(societybuildingfloorsscreen,
           arguments: [user, buildingid]);
-          
     } else if (response.statusCode == 403) {
       isLoading = false;
       update();

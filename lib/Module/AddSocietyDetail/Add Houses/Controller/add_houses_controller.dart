@@ -9,7 +9,6 @@ import '../../../../Routes/set_routes.dart';
 import '../../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../../../../Model/User.dart';
 
-
 class AddHousesController extends GetxController {
   var data = Get.arguments;
   User user = User(
@@ -30,7 +29,8 @@ class AddHousesController extends GetxController {
       superadminid: 0,
       created_at: '',
       updated_at: '');
-      
+      GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  
 
 // int? sid;
 // int? bid;
@@ -123,10 +123,6 @@ class AddHousesController extends GetxController {
     var response = await Http.Response.fromStream(responsed);
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body.toString());
-
-      print(response.body);
-
       if (user.structureType == 5) {
         Get.offNamed(houses, arguments: user);
       } else if (user.structureType == 1) {

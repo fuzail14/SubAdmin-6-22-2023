@@ -13,6 +13,7 @@ class SocietyBuildingApartmentController extends GetxController {
   var data = Get.arguments;
   int? fid;
   int? bid;
+  int apiCount = 0;
 
   late final User user;
 
@@ -29,6 +30,7 @@ class SocietyBuildingApartmentController extends GetxController {
 
   Future<SocietyBuildingApartment> SocietyBuildingApartmentsApi(
       {required int fid, required String bearerToken}) async {
+    print('api count Apartment Screen ${apiCount++}');
     print("${fid.toString()}");
     print(bearerToken);
 

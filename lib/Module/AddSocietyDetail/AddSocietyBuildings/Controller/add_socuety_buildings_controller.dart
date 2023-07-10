@@ -13,6 +13,8 @@ class AddSocietyBuildingController extends GetxController {
   var data = Get.arguments;
   late final User user;
   bool isLoading = false;
+  GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  
 
   final societyBuildingNameController = TextEditingController();
 
@@ -57,6 +59,8 @@ class AddSocietyBuildingController extends GetxController {
     var response = await Http.Response.fromStream(responsed);
 
     if (response.statusCode == 200) {
+      isLoading = false;
+      update();
       var data = jsonDecode(response.body.toString());
       print(data);
       print(response.body);

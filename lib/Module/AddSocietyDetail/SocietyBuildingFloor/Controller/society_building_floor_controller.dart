@@ -14,21 +14,23 @@ class SocietyBuildingFloorsController extends GetxController {
   String? noofphases;
 
   int? buildingid;
+  int apiCount = 0;
   late final User user;
-  final List<TextEditingController> fromController = [];
-  final List<TextEditingController> toController = [];
-  List<Map<String, dynamic>> myApiData = [];
-  bool isLoading = false;
+
+  late Future<SocietyBuildingFloor> futureFloors;
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     user = data[0];
     buildingid = data[1];
+
+    futureFloors = FloorsApi(buildingid: buildingid!, token: user.bearerToken!);
   }
 
   Future<SocietyBuildingFloor> FloorsApi(
       {required buildingid, required token}) async {
+    print('count ${apiCount++}');
     print("${buildingid.toString()}");
     print(token);
 
