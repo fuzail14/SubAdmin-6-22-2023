@@ -14,7 +14,6 @@ class CustomList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 80.h,
-      
       child: GestureDetector(
         onTap: onTap,
         child: Column(
@@ -37,9 +36,7 @@ class CustomList extends StatelessWidget {
                     height: 21.h,
                     width: 28.w,
                     color: Color.fromRGBO(255, 153, 0, 0.24),
-                    child: Image(image: AssetImage('assets/arrowfrwd.png')
-                    
-                    ),
+                    child: Image(image: AssetImage('assets/arrowfrwd.png')),
                   ),
                 ],
               ),

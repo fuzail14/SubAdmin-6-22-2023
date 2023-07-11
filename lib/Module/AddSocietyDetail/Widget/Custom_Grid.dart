@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:societyadminapp/Widgets/Extensions/extensions.dart';
 
+// ignore: must_be_immutable
 class CustomGrid extends StatelessWidget {
   CustomGrid({required this.onTap, required this.text, this.image});
   void Function()? onTap;
@@ -16,13 +18,15 @@ class CustomGrid extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        elevation: 1.5,
+        elevation: 2,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.r)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 50.h,
-              width: 60.w,
+              height: 60.22.h,
+              width: 60.22.w,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: LinearGradient(
@@ -30,7 +34,12 @@ class CustomGrid extends StatelessWidget {
                     end: Alignment.bottomCenter,
                     colors: [HexColor('#FFFFFF'), HexColor('#FF9900')]),
               ),
-              child: image ?? Image.asset('assets/phasepic.png'),
+              child: Center(
+                child: image ??
+                    SvgPicture.asset(
+                      'assets/phasesvg1.svg',
+                    ),
+              ),
             ),
             8.ph,
             Text(

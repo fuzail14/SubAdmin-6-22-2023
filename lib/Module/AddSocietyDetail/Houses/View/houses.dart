@@ -12,6 +12,7 @@ import 'package:societyadminapp/Widgets/My%20Back%20Button/my_back_button.dart';
 
 import '../../../../Widgets/Loader/loader.dart';
 import '../../../../Widgets/MyFloatingButton/My_Floating_Button.dart';
+import '../../Widget/house_N_street_card.dart';
 
 class Houses extends GetView<HouseController> {
   @override
@@ -118,100 +119,30 @@ class Houses extends GetView<HouseController> {
                                           itemCount: snapshot.data.data.length,
                                           itemBuilder: (BuildContext context,
                                               int index) {
-                                            return Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  height: 64.h,
-                                                  child: Card(
-                                                    margin: EdgeInsets.only(
-                                                        left: 20.w,
-                                                        right: 20.w),
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0.r),
-                                                    ),
-                                                    color: HexColor('#F3F3F3'),
-                                                    child: Row(
-                                                      children: [
-                                                        Container(
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  left: 20.w,
-                                                                  right: 20.w),
-                                                          height: 43.h,
-                                                          width: 43.w,
-                                                          decoration: BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              color: Color
-                                                                  .fromRGBO(
-                                                                      255,
-                                                                      153,
-                                                                      0,
-                                                                      0.14),
-                                                              image: DecorationImage(
-                                                                  image: AssetImage(
-                                                                      'assets/house1.png'))),
-                                                        ),
-                                                        Expanded(
-                                                          child: Column(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                snapshot
-                                                                    .data
-                                                                    .data[index]
-                                                                    .address
-                                                                    .toString(),
-                                                                style: GoogleFonts
-                                                                    .ubuntu(
-                                                                        fontStyle:
-                                                                            FontStyle
-                                                                                .normal,
-                                                                        // color: secondaryColor,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w500,
-                                                                        fontSize:
-                                                                            18,
-                                                                        color: HexColor(
-                                                                            '#4D4D4D')),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                        Align(
-                                                          alignment: Alignment
-                                                              .centerRight,
-                                                          child: Container(
-                                                            height: 21.h,
-                                                            width: 28.w,
-                                                            color:
-                                                                Color.fromRGBO(
-                                                                    255,
-                                                                    153,
-                                                                    0,
-                                                                    0.24),
-                                                            child: Image(
-                                                                image: AssetImage(
-                                                                    'assets/arrowfrwd.png')),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                                10.ph,
-                                              ],
+                                            return CustomCardHouseStreet(
+                                              onTap: () {},
+                                              widget: Container(
+                                              
+                                                height: 43.h,
+                                                width: 43.w,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'assets/house1.png'))),
+                                              ),
+                                              text: snapshot
+                                                  .data.data[index].address
+                                                  .toString(),
+                                              firstHeight: 64.h,
+                                              firstWidth: 324.w,
+                                              firstcolor: HexColor('#F3F3F3'),
+                                              sHeight: 43.h,
+                                              sWidth: 43.w,
+                                              smargin:   EdgeInsets.only(left: 8.w, top: 11.h),
+                                          
+                                              scolor: Color.fromRGBO(255, 153, 0, 0.14) 
                                             );
                                           },
                                         );

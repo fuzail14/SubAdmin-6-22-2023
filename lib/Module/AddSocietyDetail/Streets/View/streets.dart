@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:societyadminapp/Module/AddSocietyDetail/Streets/Controller/street_controller.dart';
+import 'package:societyadminapp/Module/AddSocietyDetail/Widget/Custom_List.dart';
 import 'package:societyadminapp/Routes/set_routes.dart';
 import 'package:societyadminapp/Widgets/Empty%20List/empty_list.dart';
+import 'package:societyadminapp/Widgets/Extensions/extensions.dart';
 import 'package:societyadminapp/Widgets/My%20Back%20Button/my_back_button.dart';
 
 import '../../../../Widgets/Loader/loader.dart';
+import '../../../../Widgets/MyFloatingButton/My_Floating_Button.dart';
+import '../../Widget/house_N_street_card.dart';
 
 class Street extends GetView {
   @override
@@ -33,27 +38,23 @@ class Street extends GetView {
             },
             child: SafeArea(
               child: Scaffold(
-                  floatingActionButton: IconButton(
-                      padding: EdgeInsets.only(top: 85),
-                      iconSize: MediaQuery.of(context).size.height * 0.065,
-                      icon: SvgPicture.asset('assets/floatingbutton.svg'),
-                      onPressed: () {
-                        if (controller.user.structureType == 1) {
-                          Get.offNamed(addstreets, arguments: controller.user);
-                        } else if (controller.user.structureType == 2) {
-                          Get.offNamed(addstreets, arguments: [
-                            controller.user,
-                            controller.blockid,
-                          ]);
-                        } else if (controller.user.structureType == 3) {
-                          Get.offNamed(addstreets, arguments: [
-                            controller.user,
-                            controller.blockid,
-                            controller.phaseid,
-                          ]);
-                        }
-                        // Get.offAndToNamed(addblocks,arguments: [controller.pid,controller.bearerToken]);
-                      }),
+                  floatingActionButton: MyFloatingButton(onPressed: () {
+                    if (controller.user.structureType == 1) {
+                      Get.offNamed(addstreets, arguments: controller.user);
+                    } else if (controller.user.structureType == 2) {
+                      Get.offNamed(addstreets, arguments: [
+                        controller.user,
+                        controller.blockid,
+                      ]);
+                    } else if (controller.user.structureType == 3) {
+                      Get.offNamed(addstreets, arguments: [
+                        controller.user,
+                        controller.blockid,
+                        controller.phaseid,
+                      ]);
+                    }
+                    // Get.offAndToNamed(addblocks,arguments: [controller.pid,controller.bearerToken]);
+                  }),
                   body: Column(
                     children: [
                       MyBackButton(
@@ -75,9 +76,7 @@ class Street extends GetView {
                           }
                         },
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.04,
-                      ),
+                      32.ph,
                       Expanded(
                           child: FutureBuilder(
                               future: (controller.user.structureType == 1)
@@ -97,122 +96,60 @@ class Street extends GetView {
                                       itemCount: snapshot.data.data.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return SizedBox(
-                                          height: 80,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              if (controller
-                                                      .user.structureType ==
-                                                  1) {
-                                                Get.offAndToNamed(houses,
-                                                    arguments: [
-                                                      controller.user,
-                                                      snapshot
-                                                          .data.data[index].id
-                                                    ]);
-                                              } else if (controller
-                                                      .user.structureType ==
-                                                  2) {
-                                                Get.offAndToNamed(houses,
-                                                    arguments: [
-                                                      controller.user,
-                                                      snapshot
-                                                          .data.data[index].id,
-                                                      controller.blockid
-                                                    ]);
-                                              } else if (controller
-                                                      .user.structureType ==
-                                                  3) {
-                                                Get.offAndToNamed(houses,
-                                                    arguments: [
-                                                      controller.user,
-                                                      snapshot
-                                                          .data.data[index].id,
-                                                      controller.blockid,
-                                                      controller.phaseid
-                                                    ]);
-                                              }
-                                            },
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      EdgeInsets.only(left: 38),
-                                                  child: Row(
-                                                    children: [
-                                                      Container(
-                                                        height: 18,
-                                                        width: 18,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: HexColor(
-                                                                    '#EFEFEF')),
-                                                        child: Center(
-                                                          child: Text(
-                                                            snapshot.data
-                                                                .data[index].id
-                                                                .toString(),
-                                                            style: TextStyle(
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize: 11,
-                                                                color: HexColor(
-                                                                    '#868686')),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 13,
-                                                      ),
-                                                      Text(
-                                                        snapshot
-                                                                .data
-                                                                .data[index]
-                                                                .address
-                                                                .toString() ,
-                                                        style:
-                                                            GoogleFonts.ubuntu(
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .normal,
-                                                                // color: secondaryColor,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontSize: 18,
-                                                                color: HexColor(
-                                                                    '#4D4D4D')),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 158,
-                                                      ),
-                                                      Container(
-                                                        height: 21,
-                                                        width: 28,
-                                                        color: Color.fromRGBO(
-                                                            255, 153, 0, 0.24),
-                                                        child: Image(
-                                                            image: AssetImage(
-                                                                'assets/arrowfrwd.png')),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 18,
-                                                ),
-                                                Divider(
-                                                  thickness: 1,
-                                                )
-                                              ],
+                                        return CustomCardHouseStreet(
+                                          onTap: () {
+                                            if (controller.user.structureType ==
+                                                1) {
+                                              Get.offAndToNamed(houses,
+                                                  arguments: [
+                                                    controller.user,
+                                                    snapshot.data.data[index].id
+                                                  ]);
+                                            } else if (controller
+                                                    .user.structureType ==
+                                                2) {
+                                              Get.offAndToNamed(houses,
+                                                  arguments: [
+                                                    controller.user,
+                                                    snapshot
+                                                        .data.data[index].id,
+                                                    controller.blockid
+                                                  ]);
+                                            } else if (controller
+                                                    .user.structureType ==
+                                                3) {
+                                              Get.offAndToNamed(houses,
+                                                  arguments: [
+                                                    controller.user,
+                                                    snapshot
+                                                        .data.data[index].id,
+                                                    controller.blockid,
+                                                    controller.phaseid
+                                                  ]);
+                                            }
+                                          },
+                                          widget: Center(
+                                            child: Text(
+                                              snapshot.data.data[index].id
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  fontStyle: FontStyle.normal,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 11.font,
+                                                  color: HexColor('#868686')),
                                             ),
                                           ),
+                                          firstHeight: 61.h,
+                                          firstWidth: 299.w,
+                                          firstcolor: Colors.white,
+                                          sHeight: 18.h,
+                                          sWidth: 18.w,
+                                          scolor: HexColor('#EFEFEF'),
+                                          smargin:   EdgeInsets.only(left: 17.w, top: 21.h),
+                                          
+                                          text: snapshot
+                                              .data.data[index].address
+                                              .toString(),
                                         );
                                       },
                                     );
@@ -225,17 +162,6 @@ class Street extends GetView {
                                   return Loader();
                                 }
                               })),
-//                 MyButton(
-//                     name: 'Next',
-//                     onPressed: controller.isLoading
-//                         ? null
-//                         : () {
-//                             if (controller.formkey.currentState!.validate()) {
-// print(controller.myApiData);
-//                             } else {
-//                               return null;
-//                             }
-//                           })
                     ],
                   )),
             ),
