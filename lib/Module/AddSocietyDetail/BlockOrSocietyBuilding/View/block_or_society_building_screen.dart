@@ -32,7 +32,7 @@ class BlockOrSocietyBuilding extends GetView {
                     Get.offAndToNamed(homescreen, arguments: controller.user);
                   },
                 ),
-                32.ph,
+                16.ph,
                 Expanded(
                   child: GridView(
                     padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -55,6 +55,7 @@ class BlockOrSocietyBuilding extends GetView {
                     ],
                   ),
                 )
+              
               ])),
             ),
           );

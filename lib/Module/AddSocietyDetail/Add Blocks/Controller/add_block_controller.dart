@@ -12,6 +12,8 @@ import '../../../../Model/User.dart';
 
 class AddBlockController extends GetxController {
   var data = Get.arguments;
+  GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  
 
   bool isLoading = false;
   User user = User(

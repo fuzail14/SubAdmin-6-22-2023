@@ -9,11 +9,11 @@ import '../../../../Routes/set_routes.dart';
 import '../../../../Services/Shared Preferences/MySharedPreferences.dart';
 import '../../../../Model/User.dart';
 
-
 class AddStreetsController extends GetxController {
   var data = Get.arguments;
   // int? bid;
   // int? pid;
+  GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
   bool isLoading = false;
   String? bearerToken;
@@ -115,8 +115,6 @@ class AddStreetsController extends GetxController {
     var response = await Http.Response.fromStream(responsed);
 
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body.toString());
-
       print(response.body);
       Get.snackbar("Streets Add Successfully", "");
       if (user.structureType == 1) {

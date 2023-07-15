@@ -73,6 +73,7 @@ class BlocksController extends GetxController {
         'Authorization': "Bearer $bearerToken"
       },
     );
+    print(response.statusCode);
     var data = jsonDecode(response.body.toString());
 
     if (response.statusCode == 200) {

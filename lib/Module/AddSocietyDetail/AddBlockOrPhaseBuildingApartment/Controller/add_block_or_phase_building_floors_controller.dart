@@ -8,13 +8,12 @@ import 'package:societyadminapp/Routes/set_routes.dart';
 import '../../../../Constants/api_routes.dart';
 import '../../../../Model/User.dart';
 
-
 class AddBlockOrPhaseBuildingApartmentsController extends GetxController {
   var argumnet = Get.arguments;
   int? fid;
   int? bid;
   int? dynamicid;
-  
+  GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
   bool isLoading = false;
 
@@ -32,7 +31,6 @@ class AddBlockOrPhaseBuildingApartmentsController extends GetxController {
     fid = argumnet[1];
     bid = argumnet[2];
     dynamicid = argumnet[3];
-    
   }
 
   addApartmentsApi({
@@ -68,8 +66,7 @@ class AddBlockOrPhaseBuildingApartmentsController extends GetxController {
       print(response.body);
       Get.snackbar("Apartments Add Successfully", "");
       Get.offAndToNamed(blockOrphasebuildingapartmentsscreen,
-          arguments: [user, fid, bid,dynamicid]);
-          
+          arguments: [user, fid, bid, dynamicid]);
     } else if (response.statusCode == 403) {
       isLoading = false;
 

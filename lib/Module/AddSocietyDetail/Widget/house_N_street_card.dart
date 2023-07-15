@@ -32,22 +32,22 @@ class CustomCardHouseStreet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: firstWidth,
-          height: firstHeight,
-          margin: EdgeInsets.only(left: 26.w, right: 25.w, bottom: 1.0.h),
-          decoration: BoxDecoration(boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(0.5, 0.5), //(x,y)
-              blurRadius: .5,
-            )
-          ], borderRadius: BorderRadius.circular(10.r), color: firstcolor),
-          child: GestureDetector(
-            onTap: onTap,
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: firstWidth,
+            height: firstHeight,
+            margin: EdgeInsets.only(left: 26.w, right: 25.w, bottom: 1.0.h),
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.5, 0.5), //(x,y)
+                blurRadius: .5,
+              )
+            ], borderRadius: BorderRadius.circular(10.r), color: firstcolor),
             child: Stack(
               children: [
                 Container(
@@ -88,9 +88,9 @@ class CustomCardHouseStreet extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        15.ph,
-      ],
+          15.ph,
+        ],
+      ),
     );
   }
 }

@@ -12,6 +12,8 @@ import '../../../../Model/User.dart';
 class AddLocalBuildingFloorsController extends GetxController {
   var data = Get.arguments;
   int? index;
+    GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+
 
   late final User user;
 

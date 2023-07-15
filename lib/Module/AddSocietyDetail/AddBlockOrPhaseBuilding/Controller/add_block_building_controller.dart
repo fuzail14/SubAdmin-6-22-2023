@@ -11,6 +11,8 @@ class AddBlockBuildingController extends GetxController {
   bool isLoading = false;
   int? bid;
   String? type;
+  GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  
 
   final societyBuildingNameController = TextEditingController();
 

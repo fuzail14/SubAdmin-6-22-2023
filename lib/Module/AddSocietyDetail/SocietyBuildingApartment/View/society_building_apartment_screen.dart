@@ -76,6 +76,7 @@ class SocietyBuildingApartmentScreen extends GetView {
                                       );
                                     },
                                   );
+                                
                                 } else if (snapshot.hasError) {
                                   return Icon(Icons.error_outline);
                                 } else {

@@ -219,10 +219,10 @@ class RouteManagement {
           binding: ScreenBindings(),
           transition: Transition.noTransition),
       GetPage(
-        name: addhouses,
-        page: () => AddHouses(),
-        binding: ScreenBindings(),
-      ),
+          name: addhouses,
+          page: () => AddHouses(),
+          binding: ScreenBindings(),
+          transition: Transition.noTransition),
       GetPage(
           name: houses,
           page: () => Houses(),

@@ -15,7 +15,7 @@ class Api {
   static const String addEventImages = baseUrl + "event/addeventimages";
   static const String addEvent = baseUrl + "event/addevent";
   static const String updateEvent = baseUrl + "event/updateevent";
-  static const String events = baseUrl + "event/events";
+  static const String events = baseUrl + "event/events"; 
   static const String searchEvent = baseUrl + "event/searchevent";
   static const String deleteEvent = baseUrl + "event/deleteevent";
   static const String addNoticeboardDetail = baseUrl + "addnoticeboarddetail";
@@ -97,7 +97,7 @@ class Api {
   static const String unverifiedLocalBuildingApartmentResident =
       baseUrl + "unverifiedlocalbuildingapartmentresident";
   static const String viewEmergency = baseUrl + "viewEmergency";
-   static const String financeManagerRegister =
+  static const String financeManagerRegister =
       baseUrl + "finance-manager/register";
   static const String financeManagerView = baseUrl + "finance-manager/view/";
   static const String financeManagerDelete =

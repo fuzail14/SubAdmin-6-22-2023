@@ -19,6 +19,8 @@ class AAddBlockOrPhaseBuildingFloorsController extends GetxController {
   late final User user;
 
   bool isLoading = false;
+  GlobalKey<FormState> formKey = new GlobalKey<FormState>();
+  
 
   @override
   void onInit() {
